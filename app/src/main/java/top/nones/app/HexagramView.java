@@ -30,6 +30,8 @@ public class HexagramView extends View {
     }
 
     private void init() {
+        setBackgroundColor(0xFFFFFFFF);  // 设置纯白色背景，确保在深色主题下也保持一致
+
         yangPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         yangPaint.setColor(0xFF2196F3);  // 蓝色，代表阳
         yangPaint.setStrokeWidth(14);    // 增加线宽

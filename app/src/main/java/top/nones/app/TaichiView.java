@@ -24,7 +24,7 @@ public class TaichiView extends View implements View.OnClickListener {
 
     private void init(Context context) {
         whitePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        whitePaint.setColor(0xFFF5F5F5); // 使用与背景渐变起始色相同的颜色
+        whitePaint.setColor(0xFFFFFFFF); // 纯白色
         whitePaint.setStyle(Paint.Style.FILL);
 
         blackPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -58,11 +58,8 @@ public class TaichiView extends View implements View.OnClickListener {
         float centerX = width / 2f;
         float centerY = height / 2f;
 
-        // 使用统一的颜色配置
-        int backgroundColor = 0xFF333333;  // 深灰色背景
-        int foregroundColor = 0xFFFFFFFF;  // 浅灰色前景
-        whitePaint.setColor(foregroundColor);
-        blackPaint.setColor(backgroundColor);
+        // 使用纯白色背景
+        canvas.drawColor(0xFFFFFFFF);
 
         // 绘制背景圆
         canvas.drawCircle(centerX, centerY, radius, blackPaint);

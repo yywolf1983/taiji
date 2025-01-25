@@ -100,44 +100,49 @@ public class HexagramListFragment extends Fragment {
             container.setOrientation(LinearLayout.VERTICAL);
             container.setGravity(Gravity.CENTER);
             container.setPadding(8, 8, 8, 8);
+            container.setBackgroundColor(0xFFFFFFFF);  // 设置白色背景
 
             HexagramView hexagramView = new HexagramView(getContext());
             hexagramView.setGua(gua);
             LinearLayout.LayoutParams hexagramParams = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
-                    100
+                    80  // 减小卦象视图高度
             );
-            hexagramParams.setMargins(2, 2, 2, 2);
+            hexagramParams.setMargins(1, 1, 1, 1);  // 减小边距
             hexagramView.setLayoutParams(hexagramParams);
             container.addView(hexagramView);
 
             TextView nameText = new TextView(getContext());
             nameText.setText(name);
-            nameText.setTextSize(14);
+            nameText.setTextSize(12);  // 减小文字大小
             nameText.setTextColor(0xFF333333);
             nameText.setGravity(Gravity.CENTER);
             container.addView(nameText);
 
             TextView pinyinText = new TextView(getContext());
             pinyinText.setText(pinyin);
-            pinyinText.setTextSize(10);
+            pinyinText.setTextSize(8);  // 减小拼音文字大小
             pinyinText.setTextColor(0xFF666666);
             pinyinText.setGravity(Gravity.CENTER);
             container.addView(pinyinText);
 
             int screenWidth = getResources().getDisplayMetrics().widthPixels;
-            int margins = getResources().getDimensionPixelSize(R.dimen.grid_margin) * 2;
-            int spacing = getResources().getDimensionPixelSize(R.dimen.item_spacing) * 3;
-            int itemWidth = (screenWidth - margins - spacing) / 4;
+            int margins = getResources().getDimensionPixelSize(R.dimen.grid_margin);
+            int spacing = getResources().getDimensionPixelSize(R.dimen.item_spacing);
+            int itemWidth = (screenWidth - (margins * 2) - (spacing * 3)) / 4;  // 每行4个卦象
             
             GridLayout.LayoutParams params = new GridLayout.LayoutParams();
             params.width = itemWidth;
             params.height = GridLayout.LayoutParams.WRAP_CONTENT;
-            params.setMargins(4, 4, 4, 4);
+            params.setMargins(2, 2, 2, 2);
             container.setLayoutParams(params);
             
             cardView.addView(container);
             gridLayout.addView(cardView);
+            gridLayout.setColumnCount(4);  // 设置每行显示4个卦象
+            gridLayout.setUseDefaultMargins(false);  // 禁用默认边距
+            gridLayout.setAlignmentMode(GridLayout.ALIGN_BOUNDS);  // 设置对齐模式
+            gridLayout.setOrientation(GridLayout.HORIZONTAL);  // 设置水平方向排列
             Log.d(TAG, "addHexagramView: 卦象视图添加成功 - " + name);
         } catch (Exception e) {
             Log.e(TAG, "addHexagramView: 添加卦象视图失败", e);
