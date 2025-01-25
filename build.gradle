@@ -1,0 +1,21 @@
+buildscript {
+    ext {
+        agp_version = '8.7.3'
+    }
+    repositories {
+        // 保留一些常用的仓库，您可以根据实际情况选择
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$agp_version"
+    }
+}
+
+dependencies {
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
