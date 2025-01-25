@@ -38,8 +38,11 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: app/build/outputs/apk/debug/app-debug.apk
-        tag_name: release-${{ github.sha }}
-        name: Release ${{ github.sha }}
+        tag_name: v${{ github.run_number }}-${{ github.sha }}
+        name: Release v${{ github.run_number }}
+        body: |
+          自动构建发布
+          Commit: ${{ github.sha }}
         draft: false
         prerelease: false
         token: ${{ secrets.GITHUB_TOKEN }}
