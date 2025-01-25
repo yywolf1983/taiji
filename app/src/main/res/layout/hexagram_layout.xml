@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- 卦名 -->
+        <TextView
+            android:id="@+id/nameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_gravity="center_horizontal"/>
+
+        <!-- 拼音 -->
+        <TextView
+            android:id="@+id/pinyinText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#666666"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"/>
+
+        <!-- 卦象 -->
+        <top.nones.app.HexagramView
+            android:id="@+id/hexagramView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="#FFFFFF"/> <!-- 添加背景颜色以确保可见性 -->
+
+        <!-- 分割线 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- 象征 -->
+        <TextView
+            android:id="@+id/symbolText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginTop="16dp"/>
+
+        <!-- 卦辞 -->
+        <TextView
+            android:id="@+id/judgmentText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginTop="16dp"/>
+
+        <!-- 断语 -->
+        <TextView
+            android:id="@+id/overallText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginTop="16dp"/>
+
+        <!-- 分割线 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- 爻辞标题 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="爻辞解释"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- 爻辞内容 -->
+        <TextView
+            android:id="@+id/linesText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:lineSpacingExtra="0dp"
+            android:lineSpacingMultiplier="1.0"/>
+
+        <!-- 在卦象视图之后，分割线之前添加 -->
+        <TextView
+            android:id="@+id/structureText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:gravity="center"
+            android:layout_marginTop="8dp"/>
+
+        <!-- 分割线 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- 卦象解释 -->
+        <TextView
+            android:id="@+id/imageText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginTop="16dp"/>
+
+        <!-- 卦辞详解 -->
+        <TextView
+            android:id="@+id/judgmentDetailText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginTop="16dp"/>
+
+        <!-- 大象传 -->
+        <TextView
+            android:id="@+id/greatSymbolismText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginTop="16dp"/>
+
+        <!-- 应用参考 -->
+        <TextView
+            android:id="@+id/applicationsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginTop="16dp"/>
+
+        <!-- 历史典故 -->
+        <TextView
+            android:id="@+id/historyText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginTop="16dp"/>
+
+        <!-- 变卦信息 -->
+        <TextView
+            android:id="@+id/changesText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+</ScrollView>
