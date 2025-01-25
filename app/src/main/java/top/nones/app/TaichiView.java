@@ -60,7 +60,7 @@ public class TaichiView extends View implements View.OnClickListener {
 
         // 使用统一的颜色配置
         int backgroundColor = 0xFF333333;  // 深灰色背景
-        int foregroundColor = 0xFFEEEEEE;  // 浅灰色前景
+        int foregroundColor = 0xFFFFFFFF;  // 浅灰色前景
         whitePaint.setColor(foregroundColor);
         blackPaint.setColor(backgroundColor);
 
