@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- 主题颜色 -->
-    <color name="colorPrimary">#795548</color>
-    <color name="colorPrimaryDark">#5D4037</color>
-    <color name="colorAccent">#FF5722</color>
+    <!-- 太极主题色系 -->
+    <color name="colorPrimary">#5D4037</color>          <!-- 深棕 -->
+    <color name="colorPrimaryDark">#3E2723</color>      <!-- 墨棕 -->
+    <color name="colorAccent">#FF8F00</color>           <!-- 琥珀金 -->
 
-1    <!-- Material Design 主题颜色 -->
-    <color name="purple_500">#6200EE</color>
-    <color name="purple_700">#3700B3</color>
-    <color name="teal_200">#03DAC5</color>
-    <color name="teal_700">#018786</color>
+    <!-- 背景 -->
+    <color name="windowBackground">#FAFAFA</color>
+    <color name="cardBackground">#FFFFFF</color>
+    <color name="dividerColor">#E0E0E0</color>
 
-    <!-- 基础颜色 -->
-    <color name="black">#000000</color>
+    <!-- 文字 -->
+    <color name="textPrimary">#212121</color>
+    <color name="textSecondary">#757575</color>
+    <color name="textHint">#9E9E9E</color>
+
+    <!-- 基础 -->
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
 
-    <!-- 背景颜色 -->
-    <color name="windowBackground">#F5F5F5</color>
-
-    <!-- 文本颜色 -->
-    <color name="textColorPrimary">#212121</color>
-    <color name="textColorSecondary">#757575</color>
+    <!-- 卦象颜色 -->
+    <color name="yangColor">#2196F3</color>              <!-- 阳爻蓝 -->
+    <color name="yinColor">#FF5722</color>               <!-- 阴爻橙 -->
 </resources>

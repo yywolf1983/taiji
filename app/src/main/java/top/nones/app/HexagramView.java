@@ -4,45 +4,61 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 
 public class HexagramView extends View {
-    private Paint yangPaint;  // 阳爻画笔
-    private Paint yinPaint;   // 阴爻画笔
+    private Paint yangPaint;
+    private Paint yinPaint;
     private String gua = "";
-    private static final int LINE_SPACING = 16;   // 减小爻线间距
-    private static final int LINE_HEIGHT = 12;    // 减小爻线高度
-    private static final int YIN_GAP = 20;        // 调整阴爻间隔
+
+    // 使用 dp 转换后的像素值
+    private float lineSpacing;
+    private float lineHeight;
+    private float yinGap;
 
     public HexagramView(Context context) {
         super(context);
-        init();
+        init(context);
     }
 
     public HexagramView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(context);
     }
 
     public HexagramView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(context);
     }
 
-    private void init() {
-        setBackgroundColor(0xFFFFFFFF);  // 设置纯白色背景，确保在深色主题下也保持一致
+    private void init(Context context) {
+        // dp 转 px
+        lineSpacing = dpToPx(context, 4);
+        lineHeight = dpToPx(context, 3);
+        yinGap = dpToPx(context, 5);
+
+        setBackgroundColor(0xFFFFFFFF);
 
         yangPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        yangPaint.setColor(0xFF2196F3);  // 蓝色，代表阳
-        yangPaint.setStrokeWidth(14);    // 增加线宽
+        yangPaint.setColor(0xFF2196F3);
+        yangPaint.setStrokeWidth(dpToPx(context, 3.5f));
         yangPaint.setStyle(Paint.Style.FILL);
-        yangPaint.setShadowLayer(4, 0, 2, 0x40000000);  // 添加阴影效果
 
         yinPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        yinPaint.setColor(0xFFFF5722);   // 橙色，代表阴
-        yinPaint.setStrokeWidth(14);     // 增加线宽
+        yinPaint.setColor(0xFFFF5722);
+        yinPaint.setStrokeWidth(dpToPx(context, 3.5f));
         yinPaint.setStyle(Paint.Style.FILL);
-        yinPaint.setShadowLayer(4, 0, 2, 0x40000000);  // 添加阴影效果
+
+        // 启用软件渲染以支持阴影
+        setLayerType(LAYER_TYPE_SOFTWARE, null);
+        yangPaint.setShadowLayer(4, 0, 2, 0x40000000);
+        yinPaint.setShadowLayer(4, 0, 2, 0x40000000);
+    }
+
+    private float dpToPx(Context context, float dp) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
+                context.getResources().getDisplayMetrics());
     }
 
     @Override
@@ -52,39 +68,37 @@ public class HexagramView extends View {
 
         int width = getWidth();
         int height = getHeight();
-        int startX = width / 12;             // 更靠左
-        int lineWidth = width * 5 / 6;       // 更长的线条
-        int startY = height - LINE_HEIGHT;    // 调整起始位置
+        float startX = width / 12f;
+        float lineWidth = width * 5f / 6;
+        float startY = height - lineHeight;
 
-        // 从下到上绘制六爻
         for (int i = 0; i < 6; i++) {
-            int y = startY - i * (LINE_HEIGHT + LINE_SPACING);
-            Paint paint = gua.charAt(5-i) == '1' ? yangPaint : yinPaint;
-            
-            if (gua.charAt(5-i) == '1') {
+            float y = startY - i * (lineHeight + lineSpacing);
+            if (gua.charAt(5 - i) == '1') {
                 // 阳爻：实线
-                canvas.drawRect(startX, y - LINE_HEIGHT/2, 
-                              startX + lineWidth, y + LINE_HEIGHT/2, paint);
+                canvas.drawRect(startX, y - lineHeight / 2,
+                        startX + lineWidth, y + lineHeight / 2, yangPaint);
             } else {
-                // 阴爻：两段线
-                float gap = YIN_GAP;
-                canvas.drawRect(startX, y - LINE_HEIGHT/2,
-                              startX + (lineWidth - gap)/2, y + LINE_HEIGHT/2, paint);
-                canvas.drawRect(startX + (lineWidth + gap)/2, y - LINE_HEIGHT/2,
-                              startX + lineWidth, y + LINE_HEIGHT/2, paint);
+                // 阴爻：两段
+                canvas.drawRect(startX, y - lineHeight / 2,
+                        startX + (lineWidth - yinGap) / 2, y + lineHeight / 2, yinPaint);
+                canvas.drawRect(startX + (lineWidth + yinGap) / 2, y - lineHeight / 2,
+                        startX + lineWidth, y + lineHeight / 2, yinPaint);
             }
         }
     }
 
     public void setGua(String gua) {
-        this.gua = gua;
-        invalidate();
+        if (gua != null && !gua.equals(this.gua)) {
+            this.gua = gua;
+            invalidate();
+        }
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int width = MeasureSpec.getSize(widthMeasureSpec);
-        int height = (LINE_HEIGHT + LINE_SPACING) * 6;  // 减小整体高度
+        int height = (int) ((lineHeight + lineSpacing) * 6 + lineSpacing);
         setMeasuredDimension(width, height);
     }
 }

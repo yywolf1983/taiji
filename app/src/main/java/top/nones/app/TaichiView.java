@@ -14,37 +14,33 @@ public class TaichiView extends View implements View.OnClickListener {
 
     public TaichiView(Context context) {
         super(context);
-        init(context);
+        init();
     }
 
     public TaichiView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context);
+        init();
     }
 
-    private void init(Context context) {
+    private void init() {
         whitePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        whitePaint.setColor(0xFFFFFFFF); // 纯白色
+        whitePaint.setColor(0xFFFFFFFF);
         whitePaint.setStyle(Paint.Style.FILL);
 
         blackPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        blackPaint.setColor(0xFF333333); // 使用较柔和的深色
+        blackPaint.setColor(0xFF333333);
         blackPaint.setStyle(Paint.Style.FILL);
 
         rectF = new RectF();
-        
-        // 设置可点击并注册点击监听器
         setClickable(true);
         setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        // 生成1-64的随机数
-        int hexagramNumber = (int) (Math.random() * 64) + 1;
-        // 启动卦象详情页面
+        // index 范围 0-63，对应64卦
+        int hexagramNumber = (int) (Math.random() * 64);
         HexagramDetailActivity.start(getContext(), hexagramNumber);
-        invalidate(); // 重绘太极图
     }
 
     @Override
@@ -54,26 +50,25 @@ public class TaichiView extends View implements View.OnClickListener {
         int width = getWidth();
         int height = getHeight();
         int size = Math.min(width, height);
-        float radius = size * 0.45f;  // 增大太极图显示比例
+        float radius = size * 0.45f;
         float centerX = width / 2f;
         float centerY = height / 2f;
 
-        // 使用纯白色背景
         canvas.drawColor(0xFFFFFFFF);
 
-        // 绘制背景圆
+        // 背景圆
         canvas.drawCircle(centerX, centerY, radius, blackPaint);
 
-        // 绘制前景半圆
+        // 右半白
         rectF.set(centerX - radius, centerY - radius, centerX + radius, centerY + radius);
         canvas.drawArc(rectF, 270, 180, true, whitePaint);
 
-        // 绘制大圆
+        // 上大白圆、下大黑圆
         float bigRadius = radius / 2;
         canvas.drawCircle(centerX, centerY - bigRadius, bigRadius, whitePaint);
         canvas.drawCircle(centerX, centerY + bigRadius, bigRadius, blackPaint);
 
-        // 绘制小圆
+        // 鱼眼
         float smallRadius = radius / 6;
         canvas.drawCircle(centerX, centerY - bigRadius, smallRadius, blackPaint);
         canvas.drawCircle(centerX, centerY + bigRadius, smallRadius, whitePaint);

@@ -1,28 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
-    android:background="#FFFFFF">
+    android:background="@color/windowBackground">
 
-    <!-- 加载进度条 -->
-    <ProgressBar
-        android:id="@+id/loadingProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- 内容布局 -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:padding="16dp">
 
         <LinearLayout
             android:id="@+id/contentLayout"
@@ -30,102 +18,128 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- 标题和卦象视图 -->
-            <LinearLayout
-                android:id="@+id/titleAndGuaLayout"
+            <!-- 头部卡片：卦名 + 卦象 + 拼音 -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                android:background="@drawable/card_background"
-                android:elevation="4dp"
-                android:padding="12dp"
-                android:layout_marginBottom="8dp">
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/cardBackground"
+                android:layout_marginBottom="12dp">
 
-                <!-- 卦名 -->
-                <TextView
-                    android:id="@+id/nameTextView"
-                    style="@style/TitleTextStyle"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="22sp"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="8dp"
-                    tools:text="卦名" />
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:padding="20dp">
 
-                <!-- 卦象视图 -->
-                <top.nones.app.HexagramView
-                    android:id="@+id/guaView"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:id="@+id/nameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/textPrimary"
+                        tools:text="乾" />
 
-                <!-- 拼音 -->
-                <TextView
-                    android:id="@+id/pinyinTextView"
-                    style="@style/SubtitleTextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="@android:color/black"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="8dp"
-                    tools:text="拼音" />
+                    <top.nones.app.HexagramView
+                        android:id="@+id/guaView"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="12dp" />
 
-                <!-- 卦象 -->
-                <TextView
-                    android:id="@+id/guaTextView"
-                    style="@style/SubtitleTextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/black"
-                    android:layout_gravity="center_horizontal"
-                    tools:text="卦象" />
+                    <TextView
+                        android:id="@+id/pinyinTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textColor="@color/textSecondary"
+                        tools:text="qián" />
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/guaTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="@color/textHint"
+                        android:layout_marginTop="4dp"
+                        tools:text="111111" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-            <!-- 象征、卦辞和评价之间的分割线 -->
-            <View
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp" />
-
-            <!-- 象征、卦辞和评价 -->
-            <LinearLayout
-                android:id="@+id/interpretationLayout"
+            <!-- 解释卡片 -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/card_background"
-                android:elevation="4dp"
-                android:padding="12dp">
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/cardBackground"
+                android:layout_marginBottom="12dp">
 
-                <!-- 描述文本 -->
-                <TextView
-                    android:id="@+id/descriptionTextView"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textColor="@android:color/black"
-                    android:layout_marginBottom="12dp"
-                    tools:text="描述" />
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                <!-- 爻辞文本 -->
-                <TextView
-                    android:id="@+id/linesTextView"
+                    <TextView
+                        style="@style/SectionTitleStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="卦辞解释" />
+
+                    <TextView
+                        android:id="@+id/descriptionTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textColor="@color/textPrimary"
+                        android:lineSpacingExtra="6dp"
+                        tools:text="解释内容" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 爻辞卡片 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/cardBackground">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textColor="@android:color/black"
-                    tools:text="爻辞" />
-            </LinearLayout>
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        style="@style/SectionTitleStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="爻辞" />
+
+                    <TextView
+                        android:id="@+id/linesTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textColor="@color/textPrimary"
+                        android:lineSpacingExtra="6dp"
+                        tools:text="爻辞内容" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
         </LinearLayout>
     </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/loadingProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+</FrameLayout>

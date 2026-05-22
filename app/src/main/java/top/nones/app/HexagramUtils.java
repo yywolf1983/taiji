@@ -17,10 +17,6 @@ public class HexagramUtils {
         return hexagram.optString("gua");
     }
 
-    public static String getDescription(JSONObject hexagram) {
-        return hexagram.optString("description");
-    }
-
     public static JSONObject getInterpretation(JSONObject hexagram) {
         try {
             return hexagram.getJSONObject("interpretation");
