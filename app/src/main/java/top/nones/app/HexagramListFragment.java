@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +18,7 @@ import org.json.JSONObject;
 public class HexagramListFragment extends Fragment {
     private RecyclerView recyclerView;
     private ProgressBar loadingIndicator;
+    private TextView emptyStateText;
 
     @Nullable
     @Override
@@ -25,6 +27,7 @@ public class HexagramListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_hexagram_list, container, false);
         recyclerView = view.findViewById(R.id.hexagramRecyclerView);
         loadingIndicator = view.findViewById(R.id.loadingIndicator);
+        emptyStateText = view.findViewById(R.id.emptyStateText);
         return view;
     }
 
@@ -34,6 +37,7 @@ public class HexagramListFragment extends Fragment {
 
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
         recyclerView.setHasFixedSize(true);
+        recyclerView.setItemViewCacheSize(20); // 缓存更多视图
 
         loadHexagrams();
     }
@@ -41,6 +45,7 @@ public class HexagramListFragment extends Fragment {
     private void loadHexagrams() {
         loadingIndicator.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
+        if (emptyStateText != null) emptyStateText.setVisibility(View.GONE);
 
         new Thread(() -> {
             HexagramDataStore store = HexagramDataStore.getInstance();
@@ -52,7 +57,11 @@ public class HexagramListFragment extends Fragment {
                 loadingIndicator.setVisibility(View.GONE);
 
                 if (hexagrams.isEmpty()) {
-                    Toast.makeText(getContext(), "加载卦象数据失败", Toast.LENGTH_LONG).show();
+                    if (emptyStateText != null) {
+                        emptyStateText.setVisibility(View.VISIBLE);
+                    } else {
+                        Toast.makeText(getContext(), "加载卦象数据失败", Toast.LENGTH_LONG).show();
+                    }
                     return;
                 }
 

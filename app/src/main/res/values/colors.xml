@@ -1,25 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- 太极主题色系 -->
-    <color name="colorPrimary">#5D4037</color>          <!-- 深棕 -->
-    <color name="colorPrimaryDark">#3E2723</color>      <!-- 墨棕 -->
-    <color name="colorAccent">#FF8F00</color>           <!-- 琥珀金 -->
+    <color name="colorPrimary">#16213E</color>
+    <color name="colorPrimaryDark">#0F0F1A</color>
+    <color name="colorPrimaryLight">#2D3A5F</color>
+    <color name="colorAccent">#E94560</color>
+    <color name="colorAccentLight">#FF6B8A</color>
 
-    <!-- 背景 -->
-    <color name="windowBackground">#FAFAFA</color>
-    <color name="cardBackground">#FFFFFF</color>
-    <color name="dividerColor">#E0E0E0</color>
+    <color name="windowBackground">#0A0A12</color>
+    <color name="windowBackgroundDark">#06060A</color>
 
-    <!-- 文字 -->
-    <color name="textPrimary">#212121</color>
-    <color name="textSecondary">#757575</color>
-    <color name="textHint">#9E9E9E</color>
+    <color name="cardBackground">#1A1A2E</color>
+    <color name="cardBackground80">#CC1A1A2E</color>
+    <color name="cardBackground60">#991A1A2E</color>
+    <color name="cardBackgroundElevated">#252540</color>
+    <color name="cardBackgroundElevated80">#CC252540</color>
 
-    <!-- 基础 -->
+    <color name="dividerColor">#2A2A40</color>
+    <color name="dividerColorLight">#1F1F35</color>
+    <color name="dividerColor60">#992A2A40</color>
+
+    <color name="textPrimary">#FFFFFF</color>
+    <color name="textSecondary">#B8B8D0</color>
+    <color name="textHint">#8888AA</color>
+    <color name="textOnPrimary">#FFFFFF</color>
+    <color name="textOnAccent">#FFFFFF</color>
+
+    <color name="textPrimary80">#CCFFFFFF</color>
+    <color name="textPrimary60">#99FFFFFF</color>
+    <color name="textSecondary80">#CCB8B8D0</color>
+
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
 
-    <!-- 卦象颜色 -->
-    <color name="yangColor">#2196F3</color>              <!-- 阳爻蓝 -->
-    <color name="yinColor">#FF5722</color>               <!-- 阴爻橙 -->
+    <color name="yangColor">#FFD700</color>
+    <color name="yinColor">#FF4500</color>
+    <color name="yangColorLight">#FFF8DC</color>
+    <color name="yinColorLight">#FFE4E1</color>
+
+    <color name="successColor">#4ECDC4</color>
+    <color name="warningColor">#FFE66D</color>
+    <color name="errorColor">#FF6B6B</color>
+
+    <color name="goldGradientStart">#FFD700</color>
+    <color name="goldGradientEnd">#FFA500</color>
+    <color name="shadowColor">#2A000000</color>
+
+    <color name="tagBackground">#252540</color>
+    <color name="tagBorder">#3A3A5C</color>
+
+    <color name="lineHeaderBg">#252540</color>
+    <color name="lineContentBg">#1A1A2E</color>
+
+    <color name="bgGradientStart">#0A0A12</color>
+    <color name="bgGradientMiddle">#0F1420</color>
+    <color name="bgGradientEnd">#0A0A12</color>
+
+    <color name="glowColor">#33E94560</color>
+    <color name="goldGlow">#22FFD700</color>
 </resources>

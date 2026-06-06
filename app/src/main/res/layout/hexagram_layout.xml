@@ -2,22 +2,22 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/windowBackground">
+    android:background="@color/windowBackgroundDark"
+    android:scrollbars="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="24dp">
 
         <!-- 卦名 -->
         <TextView
             android:id="@+id/nameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="@color/textPrimary"
+            style="@style/ChineseTitleStyle"
+            android:textSize="32sp"
             android:layout_gravity="center_horizontal" />
 
         <!-- 拼音 -->
@@ -25,17 +25,19 @@
             android:id="@+id/pinyinText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            style="@style/ChineseBodyStyle"
+            android:textSize="18sp"
             android:textColor="@color/textSecondary"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="4dp" />
+            android:layout_marginTop="6dp" />
 
         <!-- 上下卦结构 -->
         <TextView
             android:id="@+id/structureText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            style="@style/ChineseCaptionStyle"
+            android:textSize="15sp"
             android:textColor="@color/textHint"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="4dp" />
@@ -43,37 +45,39 @@
         <!-- 卦象 -->
         <top.nones.app.HexagramView
             android:id="@+id/hexagramView"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp" />
 
-        <!-- 分割线 -->
+        <!-- 装饰线 -->
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/dividerColor" />
+            android:layout_width="60dp"
+            android:layout_height="2dp"
+            android:background="@color/colorAccent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp" />
 
         <!-- 象征 -->
         <TextView
             android:id="@+id/symbolText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            style="@style/ChineseBodyStyle"
+            android:textSize="17sp"
             android:textColor="@color/colorAccent"
             android:textStyle="italic"
-            android:lineSpacingExtra="4dp"
-            android:layout_marginTop="16dp" />
+            android:lineSpacingExtra="6dp" />
 
         <!-- 卦辞 -->
         <TextView
             android:id="@+id/judgmentText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="@color/textPrimary"
-            android:lineSpacingExtra="6dp"
+            style="@style/ChineseBodyStyle"
+            android:textSize="18sp"
+            android:lineSpacingExtra="8dp"
             android:layout_marginTop="16dp" />
 
         <!-- 断语 -->
@@ -81,18 +85,17 @@
             android:id="@+id/overallText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            style="@style/ChineseBodyStyle"
+            android:textSize="16sp"
             android:textColor="@color/textSecondary"
-            android:lineSpacingExtra="4dp"
+            android:lineSpacingExtra="6dp"
             android:layout_marginTop="12dp" />
 
         <!-- 分割线 -->
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/dividerColor"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="16dp" />
+            style="@style/DividerStyle"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="20dp" />
 
         <!-- 爻辞标题 -->
         <TextView
@@ -106,9 +109,9 @@
             android:id="@+id/linesText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="@color/textPrimary"
-            android:lineSpacingExtra="6dp" />
+            style="@style/ChineseBodyStyle"
+            android:textSize="16sp"
+            android:lineSpacingExtra="8dp" />
 
     </LinearLayout>
 </ScrollView>

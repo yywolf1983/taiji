@@ -32,4 +32,58 @@ public class HexagramUtils {
             return new JSONArray();
         }
     }
+
+    public static String getBaihua(JSONObject hexagram) {
+        return hexagram.optString("baihua");
+    }
+
+    public static String getModern(JSONObject hexagram) {
+        return hexagram.optString("modern");
+    }
+
+    public static String getWuxing(JSONObject hexagram) {
+        return hexagram.optString("wuxing");
+    }
+
+    public static String getNature(JSONObject hexagram) {
+        return hexagram.optString("nature");
+    }
+
+    public static String getFamily(JSONObject hexagram) {
+        return hexagram.optString("family");
+    }
+
+    public static String getSeason(JSONObject hexagram) {
+        return hexagram.optString("season");
+    }
+
+    public static String getDirection(JSONObject hexagram) {
+        return hexagram.optString("direction");
+    }
+
+    public static JSONObject getRelationships(JSONObject hexagram) {
+        try {
+            return hexagram.getJSONObject("relationships");
+        } catch (JSONException e) {
+            return new JSONObject();
+        }
+    }
+
+    public static int getOppositeIndex(JSONObject hexagram) {
+        try {
+            JSONObject relationships = getRelationships(hexagram);
+            return relationships.optInt("opposite", -1);
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
+    public static int getInverseIndex(JSONObject hexagram) {
+        try {
+            JSONObject relationships = getRelationships(hexagram);
+            return relationships.optInt("inverse", -1);
+        } catch (Exception e) {
+            return -1;
+        }
+    }
 }
