@@ -190,40 +190,54 @@ public class HexagramDetailActivity extends AppCompatActivity {
                 if (lines != null && lines.length() > 0) {
                     for (int i = 0; i < lines.length(); i++) {
                         JSONObject line = lines.getJSONObject(i);
+                        String lineTextStr = line.optString("text", "");
+                        
+                        boolean isYang = lineTextStr.contains("九");
+                        
+                        androidx.cardview.widget.CardView lineCard = new androidx.cardview.widget.CardView(this);
+                        lineCard.setRadius(12f);
+                        lineCard.setCardElevation(1f);
+                        if (isYang) {
+                            lineCard.setCardBackgroundColor(getResources().getColor(R.color.yangColorLight));
+                        } else {
+                            lineCard.setCardBackgroundColor(getResources().getColor(R.color.yinColorLight));
+                        }
+                        
+                        LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT);
+                        cardParams.setMargins(0, i == 0 ? 0 : 8, 0, 0);
+                        lineCard.setLayoutParams(cardParams);
+
                         LinearLayout lineItem = new LinearLayout(this);
                         lineItem.setOrientation(LinearLayout.VERTICAL);
-                        lineItem.setPadding(0, i == 0 ? 0 : 16, 0, 0);
+                        lineItem.setPadding(12, 12, 12, 12);
 
-                        TextView lineText = new TextView(this);
-                        lineText.setText(line.optString("text", ""));
-                        lineText.setTextSize(15);
-                        lineText.setTextColor(getResources().getColor(R.color.textPrimary));
-                        lineText.setLineSpacing(6f, 1f);
-                        lineText.setTypeface(null, android.graphics.Typeface.BOLD);
+                        TextView lineHeader = new TextView(this);
+                        lineHeader.setText(lineTextStr);
+                        lineHeader.setTextSize(14);
+                        lineHeader.setTypeface(null, android.graphics.Typeface.BOLD);
+                        lineHeader.setLineSpacing(6f, 1f);
+                        if (isYang) {
+                            lineHeader.setTextColor(getResources().getColor(R.color.yangColor));
+                        } else {
+                            lineHeader.setTextColor(getResources().getColor(R.color.yinColor));
+                        }
 
                         String lineBaihua = line.optString("baihua", "");
                         if (!lineBaihua.isEmpty()) {
                             TextView lineBaihuaText = new TextView(this);
                             lineBaihuaText.setText(lineBaihua);
-                            lineBaihuaText.setTextSize(14);
+                            lineBaihuaText.setTextSize(13);
                             lineBaihuaText.setTextColor(getResources().getColor(R.color.textSecondary));
                             lineBaihuaText.setLineSpacing(4f, 1f);
-                            lineBaihuaText.setPadding(0, 4, 0, 0);
+                            lineBaihuaText.setPadding(0, 8, 0, 0);
                             lineItem.addView(lineBaihuaText);
                         }
 
-                        if (i < lines.length() - 1) {
-                            View divider = new View(this);
-                            divider.setLayoutParams(new LinearLayout.LayoutParams(
-                                    LinearLayout.LayoutParams.MATCH_PARENT,
-                                    1));
-                            divider.setBackgroundColor(getResources().getColor(R.color.dividerColorLight));
-                            divider.setPadding(0, 12, 0, 0);
-                            lineItem.addView(divider);
-                        }
-
-                        lineItem.addView(lineText);
-                        linesContainer.addView(lineItem);
+                        lineItem.addView(lineHeader);
+                        lineCard.addView(lineItem);
+                        linesContainer.addView(lineCard);
                     }
                 } else {
                     TextView emptyText = new TextView(this);

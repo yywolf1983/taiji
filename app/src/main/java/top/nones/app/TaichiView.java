@@ -7,6 +7,8 @@ import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -17,6 +19,10 @@ public class TaichiView extends View implements View.OnClickListener {
     private Paint borderPaint;
     private RectF rectF;
     private float rotationAngle = 0;
+    private Handler handler;
+    private boolean isAnimating = true;
+    private static final long ANIMATION_DELAY = 16;
+    private static final float ROTATION_SPEED = 0.5f;
 
     public TaichiView(Context context) {
         super(context);
@@ -50,13 +56,46 @@ public class TaichiView extends View implements View.OnClickListener {
         setClickable(true);
         setOnClickListener(this);
 
-        // 启用软件渲染以支持阴影
+        handler = new Handler(Looper.getMainLooper());
+        startRotationAnimation();
+
         setLayerType(LAYER_TYPE_SOFTWARE, null);
+    }
+
+    private void startRotationAnimation() {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (isAnimating) {
+                    rotationAngle += ROTATION_SPEED;
+                    if (rotationAngle >= 360) {
+                        rotationAngle -= 360;
+                    }
+                    invalidate();
+                    handler.postDelayed(this, ANIMATION_DELAY);
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        isAnimating = true;
+        startRotationAnimation();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        isAnimating = false;
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+        }
     }
 
     @Override
     public void onClick(View v) {
-        // index 范围 0-63，对应64卦
         int hexagramNumber = (int) (Math.random() * 64);
         HexagramDetailActivity.start(getContext(), hexagramNumber);
     }
@@ -72,24 +111,24 @@ public class TaichiView extends View implements View.OnClickListener {
         float centerX = width / 2f;
         float centerY = height / 2f;
 
-        // 绘制背景圆（黑色）
+        canvas.save();
+        canvas.rotate(rotationAngle, centerX, centerY);
+
         canvas.drawCircle(centerX, centerY, radius, blackPaint);
 
-        // 右半白（从270度开始，画180度的白色半圆）
         rectF.set(centerX - radius, centerY - radius, centerX + radius, centerY + radius);
         canvas.drawArc(rectF, 270, 180, true, whitePaint);
 
-        // 上大白圆
         float bigRadius = radius / 2;
         canvas.drawCircle(centerX, centerY - bigRadius, bigRadius, whitePaint);
 
-        // 下大黑圆
         canvas.drawCircle(centerX, centerY + bigRadius, bigRadius, blackPaint);
 
-        // 鱼眼
         float smallRadius = radius / 6;
         canvas.drawCircle(centerX, centerY - bigRadius, smallRadius, blackPaint);
         canvas.drawCircle(centerX, centerY + bigRadius, smallRadius, whitePaint);
+
+        canvas.restore();
     }
 
     @Override
