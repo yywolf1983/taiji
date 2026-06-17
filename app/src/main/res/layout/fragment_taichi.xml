@@ -37,7 +37,7 @@
                 android:layout_weight="1"
                 android:text="铜钱占卜"
                 android:textSize="16sp"
-                android:textColor="#D4AF37"
+                android:textColor="#FFD700"
                 android:background="@drawable/btn_main_bg"
                 android:layout_marginEnd="12dp"
                 android:textStyle="bold"/>
@@ -49,7 +49,7 @@
                 android:layout_weight="1"
                 android:text="蓍草占卜"
                 android:textSize="16sp"
-                android:textColor="#7B68EE"
+                android:textColor="#7986CB"
                 android:background="@drawable/btn_main_bg"
                 android:layout_marginStart="12dp"
                 android:textStyle="bold"/>

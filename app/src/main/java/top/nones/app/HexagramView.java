@@ -127,19 +127,21 @@ public class HexagramView extends View {
     }
 
     private void updatePaints(int width, int height) {
+        // 阳爻：古金色，横向渐变从左到右
         LinearGradient yangGradient = new LinearGradient(
-                0, 0, width, height,
-                0xFFD4AF37, 0xFFFFD700,
+                0, 0, width, 0,
+                0xFFDAA520, 0xFFFFD700,
                 Shader.TileMode.CLAMP);
         yangPaint.setShader(yangGradient);
-        yangPaint.setShadowLayer(6, 0, 3, 0x40D4AF37);
+        yangPaint.setShadowLayer(12, 0, 4, 0x60DAA520);
 
+        // 阴爻：深靛蓝，横向渐变更细腻
         LinearGradient yinGradient = new LinearGradient(
-                0, 0, width, height,
-                0xFF7B68EE, 0xFF9370DB,
+                0, 0, width, 0,
+                0xFF3F51B5, 0xFF4A5BC0,
                 Shader.TileMode.CLAMP);
         yinPaint.setShader(yinGradient);
-        yinPaint.setShadowLayer(6, 0, 3, 0x407B68EE);
+        yinPaint.setShadowLayer(10, 0, 3, 0x504F6BC0);
     }
 
     public void setGua(String gua) {

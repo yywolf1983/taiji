@@ -270,9 +270,9 @@ public class HexagramDetailActivity extends AppCompatActivity implements Hexagra
                         lineHeader.setTypeface(null, android.graphics.Typeface.BOLD);
                         lineHeader.setLineSpacing(6f, 1f);
                         if (isYang) {
-                            lineHeader.setTextColor(0xFF1976D2);
+                            lineHeader.setTextColor(0xFFDAA520);
                         } else {
-                            lineHeader.setTextColor(0xFFE65100);
+                            lineHeader.setTextColor(0xFF7986CB);
                         }
 
                         lineItem.addView(lineHeader);

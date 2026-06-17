@@ -33,17 +33,17 @@
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
 
-    <color name="yangColor">#C9A227</color>
-    <color name="yinColor">#B85450</color>
+    <color name="yangColor">#FFD700</color>
+    <color name="yinColor">#3F51B5</color>
     <color name="yangColorLight">#1A160A</color>
-    <color name="yinColorLight">#1A0F0F</color>
+    <color name="yinColorLight">#1A0F15</color>
 
     <color name="successColor">#4ECDC4</color>
     <color name="warningColor">#E8C872</color>
     <color name="errorColor">#CC5555</color>
 
-    <color name="goldGradientStart">#C9A227</color>
-    <color name="goldGradientEnd">#A6841D</color>
+    <color name="goldGradientStart">#DAA520</color>
+    <color name="goldGradientEnd">#FFD700</color>
     <color name="shadowColor">#2A000000</color>
 
     <color name="tagBackground">#252540</color>
