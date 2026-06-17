@@ -58,11 +58,11 @@ public class HexagramView extends View {
         cornerRadius = dpToPx(context, 10);
 
         backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        backgroundPaint.setColor(0xFFF8F8F8);
+        backgroundPaint.setColor(0xFF1A1A1A);
         backgroundPaint.setStyle(Paint.Style.FILL);
 
         borderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        borderPaint.setColor(0xFFE0E0E0);
+        borderPaint.setColor(0xFF4A4A4A);
         borderPaint.setStyle(Paint.Style.STROKE);
         borderPaint.setStrokeWidth(dpToPx(context, 1));
 
@@ -129,17 +129,17 @@ public class HexagramView extends View {
     private void updatePaints(int width, int height) {
         LinearGradient yangGradient = new LinearGradient(
                 0, 0, width, height,
-                0xFF1976D2, 0xFF42A5F5,
+                0xFFD4AF37, 0xFFFFD700,
                 Shader.TileMode.CLAMP);
         yangPaint.setShader(yangGradient);
-        yangPaint.setShadowLayer(6, 0, 3, 0x30000000);
+        yangPaint.setShadowLayer(6, 0, 3, 0x40D4AF37);
 
         LinearGradient yinGradient = new LinearGradient(
                 0, 0, width, height,
-                0xFFE65100, 0xFFFF9800,
+                0xFF7B68EE, 0xFF9370DB,
                 Shader.TileMode.CLAMP);
         yinPaint.setShader(yinGradient);
-        yinPaint.setShadowLayer(6, 0, 3, 0x30000000);
+        yinPaint.setShadowLayer(6, 0, 3, 0x407B68EE);
     }
 
     public void setGua(String gua) {
