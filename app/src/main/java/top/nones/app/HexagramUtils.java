@@ -101,4 +101,12 @@ public class HexagramUtils {
         }
         return -1;
     }
+
+    public static JSONObject getHexagram(int index) throws JSONException {
+        JSONArray hexagrams = HexagramDataStore.getInstance().getJsonArray();
+        if (hexagrams == null || index < 0 || index >= hexagrams.length()) {
+            return new JSONObject();
+        }
+        return hexagrams.getJSONObject(index);
+    }
 }

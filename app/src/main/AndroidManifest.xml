@@ -23,5 +23,11 @@
         <activity
             android:name=".HexagramDetailActivity"
             android:exported="false" />
+        <activity
+            android:name=".CoinDivinationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".YarrowDivinationActivity"
+            android:exported="false" />
     </application>
 </manifest>
