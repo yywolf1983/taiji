@@ -22,7 +22,7 @@ public class TaichiView extends View implements View.OnClickListener {
     private Handler handler;
     private boolean isAnimating = true;
     private static final long ANIMATION_DELAY = 16;
-    private static final float ROTATION_SPEED = 0.5f;
+    private static final float ROTATION_SPEED = 0f;
 
     public TaichiView(Context context) {
         super(context);

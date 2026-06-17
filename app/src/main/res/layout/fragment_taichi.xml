@@ -5,13 +5,12 @@
     android:layout_height="match_parent"
     android:background="@color/windowBackground">
 
-    <!-- 太极图直接居中展示 -->
     <top.nones.app.TaichiView
         android:id="@+id/taichiView"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
         android:clickable="true"
-        android:focusable="true" />
+        android:focusable="true"/>
 
 </FrameLayout>

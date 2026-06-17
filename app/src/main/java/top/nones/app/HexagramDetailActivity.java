@@ -197,11 +197,7 @@ public class HexagramDetailActivity extends AppCompatActivity {
                         androidx.cardview.widget.CardView lineCard = new androidx.cardview.widget.CardView(this);
                         lineCard.setRadius(12f);
                         lineCard.setCardElevation(1f);
-                        if (isYang) {
-                            lineCard.setCardBackgroundColor(getResources().getColor(R.color.yangColorLight));
-                        } else {
-                            lineCard.setCardBackgroundColor(getResources().getColor(R.color.yinColorLight));
-                        }
+                        lineCard.setCardBackgroundColor(getResources().getColor(R.color.cardBackground));
                         
                         LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
                                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -219,10 +215,12 @@ public class HexagramDetailActivity extends AppCompatActivity {
                         lineHeader.setTypeface(null, android.graphics.Typeface.BOLD);
                         lineHeader.setLineSpacing(6f, 1f);
                         if (isYang) {
-                            lineHeader.setTextColor(getResources().getColor(R.color.yangColor));
+                            lineHeader.setTextColor(0xFF1976D2);
                         } else {
-                            lineHeader.setTextColor(getResources().getColor(R.color.yinColor));
+                            lineHeader.setTextColor(0xFFE65100);
                         }
+
+                        lineItem.addView(lineHeader);
 
                         String lineBaihua = line.optString("baihua", "");
                         if (!lineBaihua.isEmpty()) {
@@ -234,8 +232,6 @@ public class HexagramDetailActivity extends AppCompatActivity {
                             lineBaihuaText.setPadding(0, 8, 0, 0);
                             lineItem.addView(lineBaihuaText);
                         }
-
-                        lineItem.addView(lineHeader);
                         lineCard.addView(lineItem);
                         linesContainer.addView(lineCard);
                     }
