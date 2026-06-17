@@ -6,6 +6,8 @@ import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -16,12 +18,23 @@ public class HexagramView extends View {
     private Paint backgroundPaint;
     private Paint borderPaint;
     private String gua = "";
-
-    // 使用 dp 转换后的像素值
+    private String originalGua = "";
+    
     private float lineSpacing;
     private float lineHeight;
     private float yinGap;
     private float cornerRadius;
+    
+    private int visibleLines = 0;
+    private boolean isAnimating = false;
+    private Handler handler;
+    
+    private OnLineChangeListener onLineChangeListener;
+    
+    public interface OnLineChangeListener {
+        void onLineChanged(int position, boolean isYang);
+        void onAnimationComplete();
+    }
 
     public HexagramView(Context context) {
         super(context);
@@ -39,32 +52,28 @@ public class HexagramView extends View {
     }
 
     private void init(Context context) {
-        // dp 转 px
-        lineSpacing = dpToPx(context, 5);
-        lineHeight = dpToPx(context, 4);
-        yinGap = dpToPx(context, 6);
-        cornerRadius = dpToPx(context, 8);
+        lineSpacing = dpToPx(context, 8);
+        lineHeight = dpToPx(context, 6);
+        yinGap = dpToPx(context, 8);
+        cornerRadius = dpToPx(context, 10);
 
-        // 背景画笔
         backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         backgroundPaint.setColor(0xFFF8F8F8);
         backgroundPaint.setStyle(Paint.Style.FILL);
 
-        // 边框画笔
         borderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         borderPaint.setColor(0xFFE0E0E0);
         borderPaint.setStyle(Paint.Style.STROKE);
         borderPaint.setStrokeWidth(dpToPx(context, 1));
 
-        // 阳爻画笔 - 使用渐变效果
         yangPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         yangPaint.setStyle(Paint.Style.FILL);
 
-        // 阴爻画笔 - 使用渐变效果
         yinPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         yinPaint.setStyle(Paint.Style.FILL);
 
-        // 启用软件渲染以支持阴影和渐变
+        handler = new Handler(Looper.getMainLooper());
+        
         setLayerType(LAYER_TYPE_SOFTWARE, null);
     }
 
@@ -81,7 +90,6 @@ public class HexagramView extends View {
         int width = getWidth();
         int height = getHeight();
 
-        // 绘制背景
         RectF backgroundRect = new RectF(0, 0, width, height);
         canvas.drawRoundRect(backgroundRect, cornerRadius, cornerRadius, backgroundPaint);
         canvas.drawRoundRect(backgroundRect, cornerRadius, cornerRadius, borderPaint);
@@ -90,31 +98,35 @@ public class HexagramView extends View {
         float lineWidth = width * 4f / 5;
         float startY = height - lineHeight - dpToPx(getContext(), 4);
 
-        // 更新画笔颜色（需要根据视图大小调整渐变）
         updatePaints(width, height);
 
         for (int i = 0; i < 6; i++) {
+            if (i >= visibleLines && !isAnimating) continue;
+            
             float y = startY - i * (lineHeight + lineSpacing);
-            if (gua.charAt(5 - i) == '1') {
-                // 阳爻：实线
-                RectF rect = new RectF(startX, y - lineHeight / 2,
-                        startX + lineWidth, y + lineHeight / 2);
-                canvas.drawRoundRect(rect, dpToPx(getContext(), 2), dpToPx(getContext(), 2), yangPaint);
-            } else {
-                // 阴爻：两段
-                float segmentWidth = (lineWidth - yinGap) / 2;
-                RectF leftRect = new RectF(startX, y - lineHeight / 2,
-                        startX + segmentWidth, y + lineHeight / 2);
-                RectF rightRect = new RectF(startX + segmentWidth + yinGap, y - lineHeight / 2,
-                        startX + lineWidth, y + lineHeight / 2);
-                canvas.drawRoundRect(leftRect, dpToPx(getContext(), 2), dpToPx(getContext(), 2), yinPaint);
-                canvas.drawRoundRect(rightRect, dpToPx(getContext(), 2), dpToPx(getContext(), 2), yinPaint);
-            }
+            boolean isYang = gua.charAt(5 - i) == '1';
+            
+            drawLine(canvas, startX, y, lineWidth, isYang);
+        }
+    }
+
+    private void drawLine(Canvas canvas, float startX, float y, float lineWidth, boolean isYang) {
+        if (isYang) {
+            RectF rect = new RectF(startX, y - lineHeight / 2,
+                    startX + lineWidth, y + lineHeight / 2);
+            canvas.drawRoundRect(rect, dpToPx(getContext(), 2), dpToPx(getContext(), 2), yangPaint);
+        } else {
+            float segmentWidth = (lineWidth - yinGap) / 2;
+            RectF leftRect = new RectF(startX, y - lineHeight / 2,
+                    startX + segmentWidth, y + lineHeight / 2);
+            RectF rightRect = new RectF(startX + segmentWidth + yinGap, y - lineHeight / 2,
+                    startX + lineWidth, y + lineHeight / 2);
+            canvas.drawRoundRect(leftRect, dpToPx(getContext(), 2), dpToPx(getContext(), 2), yinPaint);
+            canvas.drawRoundRect(rightRect, dpToPx(getContext(), 2), dpToPx(getContext(), 2), yinPaint);
         }
     }
 
     private void updatePaints(int width, int height) {
-        // 阳爻渐变：蓝色系
         LinearGradient yangGradient = new LinearGradient(
                 0, 0, width, height,
                 0xFF1976D2, 0xFF42A5F5,
@@ -122,7 +134,6 @@ public class HexagramView extends View {
         yangPaint.setShader(yangGradient);
         yangPaint.setShadowLayer(6, 0, 3, 0x30000000);
 
-        // 阴爻渐变：橙色系
         LinearGradient yinGradient = new LinearGradient(
                 0, 0, width, height,
                 0xFFE65100, 0xFFFF9800,
@@ -134,8 +145,81 @@ public class HexagramView extends View {
     public void setGua(String gua) {
         if (gua != null && !gua.equals(this.gua)) {
             this.gua = gua;
+            this.originalGua = gua;
+            visibleLines = 0;
             invalidate();
+            startRevealAnimation();
         }
+    }
+
+    public void setOnLineChangeListener(OnLineChangeListener listener) {
+        this.onLineChangeListener = listener;
+    }
+
+    private void startRevealAnimation() {
+        isAnimating = true;
+        visibleLines = 0;
+        handler.removeCallbacksAndMessages(null);
+        
+        handler.postDelayed(new Runnable() {
+            int currentLine = 0;
+            
+            @Override
+            public void run() {
+                if (currentLine < 6) {
+                    visibleLines = currentLine + 1;
+                    invalidate();
+                    
+                    if (onLineChangeListener != null) {
+                        boolean isYang = gua.charAt(5 - currentLine) == '1';
+                        onLineChangeListener.onLineChanged(currentLine, isYang);
+                    }
+                    
+                    currentLine++;
+                    handler.postDelayed(this, 400);
+                } else {
+                    isAnimating = false;
+                    invalidate();
+                    if (onLineChangeListener != null) {
+                        onLineChangeListener.onAnimationComplete();
+                    }
+                }
+            }
+        }, 300);
+    }
+
+    private String tempGua = "";
+    
+    public void toggleLine(int position) {
+        if (position < 0 || position >= 6) return;
+        
+        if (tempGua.isEmpty()) {
+            tempGua = gua;
+        }
+        
+        char[] guaChars = tempGua.toCharArray();
+        guaChars[5 - position] = guaChars[5 - position] == '1' ? '0' : '1';
+        tempGua = new String(guaChars);
+        
+        if (onLineChangeListener != null) {
+            boolean isYang = tempGua.charAt(5 - position) == '1';
+            onLineChangeListener.onLineChanged(position, isYang);
+        }
+    }
+    
+    public String getCurrentGua() {
+        return tempGua.isEmpty() ? gua : tempGua;
+    }
+    
+    public void resetGua() {
+        tempGua = "";
+        visibleLines = 6;
+        isAnimating = false;
+        invalidate();
+    }
+
+    public String getOriginalGua() {
+        return originalGua;
     }
 
     @Override

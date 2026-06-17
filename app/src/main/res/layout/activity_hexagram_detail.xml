@@ -110,9 +110,10 @@
                                     android:layout_marginTop="4dp" />
 
                                 <LinearLayout
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal"
+                                    android:gravity="center"
                                     android:layout_marginTop="8dp">
 
                                     <TextView
@@ -150,23 +151,119 @@
                             </LinearLayout>
 
                             <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <top.nones.app.HexagramView
+                                android:id="@+id/guaView"
+                                android:layout_width="90dp"
+                                android:layout_height="wrap_content" />
+
+                            <LinearLayout
+                                android:id="@+id/changeButtonsLayout"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
-                                android:gravity="center">
+                                android:gravity="center"
+                                android:layout_marginTop="8dp">
 
-                                <top.nones.app.HexagramView
-                                    android:id="@+id/guaView"
-                                    android:layout_width="100dp"
-                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:id="@+id/changeHint"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="点击按钮变爻"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/textHint"
+                                    android:gravity="center"
+                                    android:paddingHorizontal="8dp"
+                                    android:paddingVertical="4dp" />
 
-                                <View
-                                    android:layout_width="32dp"
-                                    android:layout_height="32dp"
-                                    android:background="@drawable/decor_bagua"
-                                    android:layout_marginTop="8dp"
-                                    android:layout_gravity="center_horizontal" />
+                                <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_marginTop="4dp">
+
+                                    <Button
+                                        android:id="@+id/btnLine1"
+                                        android:layout_width="48dp"
+                                        android:layout_height="28dp"
+                                        android:text=""
+                                        android:textSize="11sp"
+                                        android:textColor="@color/textSecondary"
+                                        android:background="@drawable/btn_line_normal"
+                                        android:padding="0dp"
+                                        android:layout_marginEnd="6dp" />
+                                    <Button
+                                        android:id="@+id/btnLine2"
+                                        android:layout_width="48dp"
+                                        android:layout_height="28dp"
+                                        android:text=""
+                                        android:textSize="11sp"
+                                        android:textColor="@color/textSecondary"
+                                        android:background="@drawable/btn_line_normal"
+                                        android:padding="0dp"
+                                        android:layout_marginEnd="6dp" />
+                                    <Button
+                                        android:id="@+id/btnLine3"
+                                        android:layout_width="48dp"
+                                        android:layout_height="28dp"
+                                        android:text=""
+                                        android:textSize="11sp"
+                                        android:textColor="@color/textSecondary"
+                                        android:background="@drawable/btn_line_normal"
+                                        android:padding="0dp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_marginTop="4dp">
+
+                                    <Button
+                                        android:id="@+id/btnLine4"
+                                        android:layout_width="48dp"
+                                        android:layout_height="28dp"
+                                        android:text=""
+                                        android:textSize="11sp"
+                                        android:textColor="@color/textSecondary"
+                                        android:background="@drawable/btn_line_normal"
+                                        android:padding="0dp"
+                                        android:layout_marginEnd="6dp" />
+                                    <Button
+                                        android:id="@+id/btnLine5"
+                                        android:layout_width="48dp"
+                                        android:layout_height="28dp"
+                                        android:text=""
+                                        android:textSize="11sp"
+                                        android:textColor="@color/textSecondary"
+                                        android:background="@drawable/btn_line_normal"
+                                        android:padding="0dp"
+                                        android:layout_marginEnd="6dp" />
+                                    <Button
+                                        android:id="@+id/btnLine6"
+                                        android:layout_width="48dp"
+                                        android:layout_height="28dp"
+                                        android:text=""
+                                        android:textSize="11sp"
+                                        android:textColor="@color/textSecondary"
+                                        android:background="@drawable/btn_line_normal"
+                                        android:padding="0dp" />
+                                </LinearLayout>
                             </LinearLayout>
+
+                            <View
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:background="@drawable/decor_bagua"
+                                android:layout_marginTop="8dp"
+                                android:layout_gravity="center_horizontal" />
+                        </LinearLayout>
                         </LinearLayout>
 
                         <View
@@ -213,6 +310,112 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="8dp"
                             android:textStyle="italic" />
+
+                        <LinearLayout
+                            android:id="@+id/zhiguaContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone"
+                            android:background="@color/cardBackgroundElevated80"
+                            android:padding="12dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginBottom="8dp">
+
+                                <View
+                                    android:layout_width="3dp"
+                                    android:layout_height="16dp"
+                                    android:background="@color/warningColor"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginTop="2dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="之卦（变卦）"
+                                    android:textSize="14sp"
+                                    android:textColor="@color/textPrimary"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+
+                                    <top.nones.app.HexagramView
+                                        android:id="@+id/zhiguaView"
+                                        android:layout_width="70dp"
+                                        android:layout_height="wrap_content" />
+
+                                    <TextView
+                                        android:id="@+id/zhiguaName"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="16sp"
+                                        android:textColor="@color/textPrimary"
+                                        android:layout_marginTop="4dp"
+                                        style="@style/ChineseTitleStyle" />
+
+                                    <TextView
+                                        android:id="@+id/zhiguaPinyin"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="11sp"
+                                        android:textColor="@color/textSecondary" />
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="60dp"
+                                    android:background="@color/dividerColor60"
+                                    android:layout_marginStart="16dp"
+                                    android:layout_marginEnd="16dp" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/zhiguaJudgment"
+                                        style="@style/ChineseBodyStyle"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="13sp"
+                                        android:textColor="@color/textSecondary"
+                                        android:lineSpacingExtra="4sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/dividerColor60"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginBottom="8dp" />
+
+                            <TextView
+                                android:id="@+id/changeRuleExplain"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:textColor="@color/textSecondary80"
+                                android:gravity="center"
+                                android:visibility="gone" />
+                        </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 

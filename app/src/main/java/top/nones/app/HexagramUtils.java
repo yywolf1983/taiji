@@ -86,4 +86,19 @@ public class HexagramUtils {
             return -1;
         }
     }
+
+    public static int findHexagramIndexByGua(String guaStr) {
+        try {
+            org.json.JSONArray hexagrams = HexagramDataStore.getInstance().getJsonArray();
+            if (hexagrams == null) return -1;
+            for (int i = 0; i < hexagrams.length(); i++) {
+                JSONObject hexagram = hexagrams.getJSONObject(i);
+                if (guaStr.equals(hexagram.optString("gua"))) {
+                    return i;
+                }
+            }
+        } catch (Exception e) {
+        }
+        return -1;
+    }
 }
