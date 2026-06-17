@@ -270,9 +270,9 @@ public class HexagramDetailActivity extends AppCompatActivity implements Hexagra
                         lineHeader.setTypeface(null, android.graphics.Typeface.BOLD);
                         lineHeader.setLineSpacing(6f, 1f);
                         if (isYang) {
-                            lineHeader.setTextColor(0xFFDAA520);
+                            lineHeader.setTextColor(0xFFB8943E);
                         } else {
-                            lineHeader.setTextColor(0xFF7986CB);
+                            lineHeader.setTextColor(0xFF5B6A8A);
                         }
 
                         lineItem.addView(lineHeader);
@@ -340,7 +340,7 @@ public class HexagramDetailActivity extends AppCompatActivity implements Hexagra
         
         if (currentGua.charAt(5 - position) != originalGua.charAt(5 - position)) {
             lineButtons[position].setBackgroundResource(R.drawable.btn_line_changed);
-            lineButtons[position].setTextColor(0xFF333333);
+            lineButtons[position].setTextColor(0xFF9B9689);
         } else {
             lineButtons[position].setBackgroundResource(R.drawable.btn_line_normal);
             lineButtons[position].setTextColor(getResources().getColor(R.color.textSecondary));

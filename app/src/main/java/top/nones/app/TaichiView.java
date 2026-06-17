@@ -36,11 +36,11 @@ public class TaichiView extends View implements View.OnClickListener {
 
     private void init() {
         whitePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        whitePaint.setColor(0xFFFFFFFF);
+        whitePaint.setColor(0xFFF5F0E8);
         whitePaint.setStyle(Paint.Style.FILL);
 
         blackPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        blackPaint.setColor(0xFF1A1A1A);
+        blackPaint.setColor(0xFF181B24);
         blackPaint.setStyle(Paint.Style.FILL);
 
         shadowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -48,7 +48,7 @@ public class TaichiView extends View implements View.OnClickListener {
         shadowPaint.setStyle(Paint.Style.FILL);
 
         borderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        borderPaint.setColor(0xFFE0E0E0);
+        borderPaint.setColor(0xFF3A3D4A);
         borderPaint.setStyle(Paint.Style.STROKE);
         borderPaint.setStrokeWidth(2f);
 

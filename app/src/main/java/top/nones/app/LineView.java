@@ -78,21 +78,21 @@ public class LineView extends View {
     }
     
     private void updatePaints(int width, int height) {
-        // 阳爻：古金色，象征日光、刚健
+        // 阳爻：古铜金，沉稳温润
         LinearGradient yangGradient = new LinearGradient(
                 0, 0, width, 0,
-                0xFFDAA520, 0xFFFFD700,
+                0xFFB8943E, 0xFFC9A45C,
                 Shader.TileMode.CLAMP);
         yangPaint.setShader(yangGradient);
-        yangPaint.setShadowLayer(12, 0, 4, 0x60DAA520);
+        yangPaint.setShadowLayer(8, 0, 2, 0x40C9A45C);
         
-        // 阴爻：深靛蓝，象征夜空、柔顺
+        // 阴爻：墨蓝，沉静如夜
         LinearGradient yinGradient = new LinearGradient(
                 0, 0, width, 0,
-                0xFF3F51B5, 0xFF4A5BC0,
+                0xFF4A5B7A, 0xFF5B6A8A,
                 Shader.TileMode.CLAMP);
         yinPaint.setShader(yinGradient);
-        yinPaint.setShadowLayer(10, 0, 3, 0x504F6BC0);
+        yinPaint.setShadowLayer(6, 0, 2, 0x305B6A8A);
     }
     
     @Override

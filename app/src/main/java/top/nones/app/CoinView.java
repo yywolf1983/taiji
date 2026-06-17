@@ -81,28 +81,28 @@ public class CoinView extends View {
     private void drawCoin(Canvas canvas, float radius) {
         paint.setStyle(Paint.Style.FILL);
         
-        paint.setColor(0xFFB8860B);
+        paint.setColor(0xFF9A7B2E);
         canvas.drawCircle(0, 0, radius, paint);
         
-        paint.setColor(0xFFFFD700);
+        paint.setColor(0xFFC9A45C);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(radius * 0.08f);
         canvas.drawCircle(0, 0, radius * 0.9f, paint);
         
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor(0xFFB8860B);
+        paint.setColor(0xFF9A7B2E);
         canvas.drawCircle(0, 0, radius, paint);
         
-        paint.setColor(Color.WHITE);
+        paint.setColor(0xFFF5F0E8);
         canvas.drawCircle(0, 0, radius * 0.35f, paint);
         
-        paint.setColor(0xFFB8860B);
+        paint.setColor(0xFF9A7B2E);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(radius * 0.05f);
         canvas.drawCircle(0, 0, radius * 0.4f, paint);
         
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor(0xFF8B4513);
+        paint.setColor(0xFF6B4E2A);
         paint.setAlpha((int)(alpha * 255));
         if (isYang) {
             drawYangFace(canvas, radius);
@@ -113,7 +113,7 @@ public class CoinView extends View {
     }
     
     private void drawYangFace(Canvas canvas, float radius) {
-        paint.setColor(0xFF1a1a1a);
+        paint.setColor(0xFF181B24);
         paint.setTextSize(radius * 0.25f);
         paint.setTextAlign(Paint.Align.CENTER);
         
@@ -128,7 +128,7 @@ public class CoinView extends View {
     }
     
     private void drawYinFace(Canvas canvas, float radius) {
-        paint.setColor(0xFF333333);
+        paint.setColor(0xFF2D3345);
         paint.setTextSize(radius * 0.18f);
         paint.setTextAlign(Paint.Align.CENTER);
         

@@ -53,17 +53,17 @@ public class YarrowView extends View {
     
     private void init() {
         paint = new Paint();
-        paint.setColor(0xFF8B4513);
+        paint.setColor(0xFF8B6B3D);
         paint.setStrokeWidth(5);
         paint.setAntiAlias(true);
         
         highlightPaint = new Paint();
-        highlightPaint.setColor(0xFFFFD700);
+        highlightPaint.setColor(0xFFC9A45C);
         highlightPaint.setStrokeWidth(6);
         highlightPaint.setAntiAlias(true);
         
         selectedPaint = new Paint();
-        selectedPaint.setColor(0xFFFF6347);
+        selectedPaint.setColor(0xFFD4915A);
         selectedPaint.setStrokeWidth(6);
         selectedPaint.setAntiAlias(true);
         
@@ -308,7 +308,7 @@ public class YarrowView extends View {
         }
         
         paint.setAlpha(255);
-        paint.setColor(0xFF666666);
+        paint.setColor(0xFF6A6560);
         paint.setTextSize(16);
         paint.setTextAlign(Paint.Align.CENTER);
         
@@ -329,11 +329,11 @@ public class YarrowView extends View {
     }
     
     private void drawBackground(Canvas canvas) {
-        bgPaint.setColor(0xFFF5F5DC);
+        bgPaint.setColor(0xFF181B24);
         bgPaint.setStyle(Paint.Style.FILL);
         canvas.drawRect(0, 0, viewWidth, viewHeight, bgPaint);
         
-        bgPaint.setColor(0x208B4513);
+        bgPaint.setColor(0x208B6B3D);
         bgPaint.setStrokeWidth(2);
         
         float centerX = viewWidth / 2f;
@@ -341,11 +341,11 @@ public class YarrowView extends View {
         
         canvas.drawLine(centerX, centerY - 120, centerX, centerY + 120, bgPaint);
         
-        bgPaint.setColor(0x108B4513);
+        bgPaint.setColor(0x108B6B3D);
         canvas.drawRect(centerX - 150, centerY - 120, centerX - 50, centerY + 120, bgPaint);
         canvas.drawRect(centerX + 50, centerY - 120, centerX + 150, centerY + 120, bgPaint);
         
-        bgPaint.setColor(0x15FFFFD7);
+        bgPaint.setColor(0x15C9A45C);
         canvas.drawRect(centerX - 35, viewHeight - 120, centerX + 35, viewHeight - 80, bgPaint);
     }
     
@@ -360,12 +360,12 @@ public class YarrowView extends View {
         p.setStrokeWidth(width);
         canvas.drawLine(0, -length / 2, 0, length / 2, p);
         
-        p.setColor(0xFF654321);
+        p.setColor(0xFF5A3A1A);
         p.setStrokeWidth(width * 1.3f);
         canvas.drawPoint(0, -length / 2 + 7, p);
         canvas.drawPoint(0, length / 2 - 7, p);
         
-        p.setColor(0xFFA0522D);
+        p.setColor(0xFF8B6B3D);
         p.setStrokeWidth(width * 0.8f);
         
         canvas.restore();

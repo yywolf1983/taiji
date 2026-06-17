@@ -2,15 +2,15 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
         <shape>
-            <gradient android:startColor="#8B6508" android:endColor="#6B4E06" android:angle="90"/>
-            <stroke android:width="1dp" android:color="#DAA520"/>
+            <gradient android:startColor="#8A6D2B" android:endColor="#6B541D" android:angle="90"/>
+            <stroke android:width="1dp" android:color="#C9A45C"/>
             <corners android:radius="8dp"/>
         </shape>
     </item>
     <item>
         <shape>
-            <gradient android:startColor="#6B4E06" android:endColor="#4A3604" android:angle="90"/>
-            <stroke android:width="1dp" android:color="#B8860B"/>
+            <gradient android:startColor="#6B541D" android:endColor="#4A3A12" android:angle="90"/>
+            <stroke android:width="1dp" android:color="#9A7B2E"/>
             <corners android:radius="8dp"/>
         </shape>
     </item>

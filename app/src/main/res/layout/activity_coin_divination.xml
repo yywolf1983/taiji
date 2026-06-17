@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0D0D0D"
+    android:background="@color/windowBackground"
     android:fillViewport="true">
 
     <LinearLayout
@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:text="铜钱占卜"
             android:textSize="22sp"
-        android:textColor="#FFD700"
+        android:textColor="@color/yangColor"
         android:textAlignment="center"
         android:paddingTop="24dp"
         android:paddingBottom="8dp"
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:text="准备工作"
                 android:textSize="17sp"
-                android:textColor="#DAA520"
+                android:textColor="@color/goldGradientStart"
                 android:textStyle="bold"/>
 
             <TextView
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:text="请准备三枚铜钱，心中默念您想询问的问题。"
                 android:textSize="14sp"
-                android:textColor="#888888"
+                android:textColor="@color/textHint"
                 android:layout_marginTop="6dp"/>
         </LinearLayout>
 
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:text="请选择投掷结果"
                 android:textSize="15sp"
-                android:textColor="#CCCCCC"
+                android:textColor="@color/textSecondary"
                 android:layout_marginBottom="10dp"/>
 
             <LinearLayout
@@ -78,7 +78,7 @@
                     android:layout_height="44dp"
                     android:text="3阳 (○○○) - 老阳"
                     android:textSize="14sp"
-                    android:textColor="#FFD700"
+                    android:textColor="@color/yangColor"
                     android:background="@drawable/btn_yang_bg"
                     android:layout_marginBottom="6dp"/>
 
@@ -88,7 +88,7 @@
                     android:layout_height="44dp"
                     android:text="2阳1阴 (○○●) - 少阳"
                     android:textSize="14sp"
-                    android:textColor="#DAA520"
+                    android:textColor="@color/goldGradientStart"
                     android:background="@drawable/btn_dark_bg"
                     android:layout_marginBottom="6dp"/>
 
@@ -98,7 +98,7 @@
                     android:layout_height="44dp"
                     android:text="1阳2阴 (○●●) - 少阴"
                     android:textSize="14sp"
-                    android:textColor="#7986CB"
+                    android:textColor="@color/yinColor"
                     android:background="@drawable/btn_dark_bg"
                     android:layout_marginBottom="6dp"/>
 
@@ -108,7 +108,7 @@
                     android:layout_height="44dp"
                     android:text="3阴 (●●●) - 老阴"
                     android:textSize="14sp"
-                    android:textColor="#5C6BC0"
+                    android:textColor="@color/yinColor"
                     android:background="@drawable/btn_yin_bg"/>
             </LinearLayout>
         </LinearLayout>
@@ -126,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:text="已选爻位"
                 android:textSize="14sp"
-                android:textColor="#666666"
+                android:textColor="@color/textHint"
                 android:layout_marginBottom="8dp"/>
 
             <LinearLayout
@@ -166,7 +166,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="34sp"
-                    android:textColor="#FFD700"
+                    android:textColor="@color/yangColor"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -174,7 +174,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
-                    android:textColor="#7986CB"
+                    android:textColor="@color/yinColor"
                     android:layout_marginTop="2dp"/>
 
                 <TextView
@@ -182,7 +182,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="13sp"
-                    android:textColor="#888888"
+                    android:textColor="@color/textHint"
                     android:layout_marginTop="6dp"/>
 
                 <TextView
@@ -190,7 +190,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
-                    android:textColor="#666666"
+                    android:textColor="@color/textHint"
                     android:layout_marginTop="2dp"/>
 
                 <TextView
@@ -198,7 +198,7 @@
                     android:layout_height="wrap_content"
                     android:text="点击查看详解 ▸"
                     android:textSize="12sp"
-                    android:textColor="#DAA520"
+                    android:textColor="@color/goldGradientStart"
                     android:layout_marginTop="10dp"/>
             </LinearLayout>
         </LinearLayout>
@@ -209,7 +209,7 @@
             android:layout_height="48dp"
             android:text="开始占卜"
             android:textSize="16sp"
-            android:textColor="#FFD700"
+            android:textColor="@color/yangColor"
             android:background="@drawable/btn_gold_bg"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="24dp"
@@ -222,7 +222,7 @@
             android:layout_height="48dp"
             android:text="重新占卜"
             android:textSize="16sp"
-            android:textColor="#888888"
+            android:textColor="@color/textHint"
             android:background="@drawable/btn_dark_bg"
             android:layout_marginBottom="24dp"
             android:layout_marginHorizontal="32dp"

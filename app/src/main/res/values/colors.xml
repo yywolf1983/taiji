@@ -1,64 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#16213E</color>
-    <color name="colorPrimaryDark">#0F0F1A</color>
-    <color name="colorPrimaryLight">#2D3A5F</color>
-    <color name="colorAccent">#C74B50</color>
-    <color name="colorAccentLight">#E87579</color>
+    <!-- ═══ 主色调 — 墨色系 ═══ -->
+    <color name="colorPrimary">#1C2230</color>
+    <color name="colorPrimaryDark">#111520</color>
+    <color name="colorPrimaryLight">#2D374F</color>
+    <color name="colorAccent">#C9A45C</color>
+    <color name="colorAccentLight">#D4B87A</color>
 
-    <color name="windowBackground">#0A0A12</color>
-    <color name="windowBackgroundDark">#06060A</color>
+    <!-- ═══ 背景 — 暖调深灰 ═══ -->
+    <color name="windowBackground">#0C0E14</color>
+    <color name="windowBackgroundDark">#08090D</color>
+    <color name="bgGradientStart">#0C0E14</color>
+    <color name="bgGradientMiddle">#11141C</color>
+    <color name="bgGradientEnd">#0C0E14</color>
 
-    <color name="cardBackground">#1A1A2E</color>
-    <color name="cardBackground80">#CC1A1A2E</color>
-    <color name="cardBackground60">#991A1A2E</color>
-    <color name="cardBackgroundElevated">#252540</color>
-    <color name="cardBackgroundElevated80">#CC252540</color>
+    <!-- ═══ 卡片 ═══ -->
+    <color name="cardBackground">#181B24</color>
+    <color name="cardBackground80">#CC181B24</color>
+    <color name="cardBackground60">#99181B24</color>
+    <color name="cardBackgroundElevated">#1E2230</color>
+    <color name="cardBackgroundElevated80">#CC1E2230</color>
 
-    <color name="dividerColor">#2A2A40</color>
-    <color name="dividerColorLight">#1F1F35</color>
-    <color name="dividerColor60">#992A2A40</color>
+    <!-- ═══ 分割线 ═══ -->
+    <color name="dividerColor">#25283A</color>
+    <color name="dividerColorLight">#1C1F30</color>
+    <color name="dividerColor60">#9925283A</color>
 
-    <color name="textPrimary">#FFFFFF</color>
-    <color name="textSecondary">#B8B8D0</color>
-    <color name="textHint">#8888AA</color>
-    <color name="textOnPrimary">#FFFFFF</color>
-    <color name="textOnAccent">#FFFFFF</color>
+    <!-- ═══ 文字 — 宣纸暖调 ═══ -->
+    <color name="textPrimary">#E8E4D9</color>
+    <color name="textSecondary">#9B9689</color>
+    <color name="textHint">#6A6560</color>
+    <color name="textOnPrimary">#E8E4D9</color>
+    <color name="textOnAccent">#1C1C1A</color>
+    <color name="textPrimary80">#CCE8E4D9</color>
+    <color name="textPrimary60">#99E8E4D9</color>
+    <color name="textSecondary80">#CC9B9689</color>
 
-    <color name="textPrimary80">#CCFFFFFF</color>
-    <color name="textPrimary60">#99FFFFFF</color>
-    <color name="textSecondary80">#CCB8B8D0</color>
-
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
+    <!-- ═══ 基础 ═══ -->
+    <color name="white">#F5F0E8</color>
+    <color name="black">#0C0E14</color>
     <color name="transparent">#00000000</color>
 
-    <color name="yangColor">#FFD700</color>
-    <color name="yinColor">#3F51B5</color>
-    <color name="yangColorLight">#1A160A</color>
-    <color name="yinColorLight">#1A0F15</color>
+    <!-- ═══ 阴阳爻 ═══ -->
+    <color name="yangColor">#C9A45C</color>
+    <color name="yinColor">#5B6A8A</color>
+    <color name="yangColorLight">#1A1610</color>
+    <color name="yinColorLight">#10141A</color>
 
-    <color name="successColor">#4ECDC4</color>
-    <color name="warningColor">#E8C872</color>
-    <color name="errorColor">#CC5555</color>
+    <!-- ═══ 功能色 ═══ -->
+    <color name="successColor">#6B9B7A</color>
+    <color name="warningColor">#C9A45C</color>
+    <color name="errorColor">#A05A5A</color>
 
-    <color name="goldGradientStart">#DAA520</color>
-    <color name="goldGradientEnd">#FFD700</color>
+    <!-- ═══ 渐变 ═══ -->
+    <color name="goldGradientStart">#B8943E</color>
+    <color name="goldGradientEnd">#C9A45C</color>
     <color name="shadowColor">#2A000000</color>
 
-    <color name="tagBackground">#252540</color>
-    <color name="tagBorder">#3A3A5C</color>
+    <!-- ═══ 标签 ═══ -->
+    <color name="tagBackground">#1E2230</color>
+    <color name="tagBorder">#2D3345</color>
 
-    <color name="lineHeaderBg">#252540</color>
-    <color name="lineContentBg">#1A1A2E</color>
+    <!-- ═══ 爻线容器 ═══ -->
+    <color name="lineHeaderBg">#1E2230</color>
+    <color name="lineContentBg">#181B24</color>
 
-    <color name="bgGradientStart">#0A0A12</color>
-    <color name="bgGradientMiddle">#0F1420</color>
-    <color name="bgGradientEnd">#0A0A12</color>
+    <!-- ═══ 发光 ═══ -->
+    <color name="glowColor">#22C9A45C</color>
+    <color name="goldGlow">#22B8943E</color>
 
-    <color name="glowColor">#22C74B50</color>
-    <color name="goldGlow">#22C9A227</color>
-
-    <color name="decorColor">#3A3A5C</color>
-    <color name="decorColorLight">#2A2A40</color>
+    <!-- ═══ 装饰 ═══ -->
+    <color name="decorColor">#2D3345</color>
+    <color name="decorColorLight">#25283A</color>
 </resources>

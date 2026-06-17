@@ -15,7 +15,7 @@
 
     <style name="SectionTitleStyle">
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/textPrimary</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginBottom">12dp</item>
         <item name="android:letterSpacing">0.03</item>
@@ -49,8 +49,8 @@
 
     <!-- 按钮样式 -->
     <style name="ButtonStyle" parent="Widget.MaterialComponents.Button.UnelevatedButton">
-        <item name="backgroundTint">@color/colorPrimary</item>
-        <item name="android:textColor">@color/textOnPrimary</item>
+        <item name="backgroundTint">@color/colorAccent</item>
+        <item name="android:textColor">@color/textOnAccent</item>
         <item name="cornerRadius">8dp</item>
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">12dp</item>
@@ -59,15 +59,15 @@
     </style>
 
     <style name="ButtonStyle.Outline" parent="Widget.MaterialComponents.Button.OutlinedButton">
-        <item name="strokeColor">@color/colorPrimary</item>
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="strokeColor">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorAccent</item>
         <item name="cornerRadius">8dp</item>
     </style>
 
     <!-- 输入框样式 -->
     <style name="InputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">@color/colorPrimary</item>
-        <item name="hintTextColor">@color/colorPrimary</item>
+        <item name="boxStrokeColor">@color/colorAccent</item>
+        <item name="hintTextColor">@color/colorAccent</item>
         <item name="android:textColorHint">@color/textHint</item>
     </style>
 
@@ -91,7 +91,7 @@
     <style name="ChineseTitleStyle">
         <item name="android:fontFamily">serif</item>
         <item name="android:textSize">28sp</item>
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/textPrimary</item>
         <item name="android:textStyle">bold</item>
         <item name="android:letterSpacing">0.15</item>
     </style>

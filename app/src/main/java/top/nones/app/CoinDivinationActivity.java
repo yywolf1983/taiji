@@ -249,7 +249,7 @@ public class CoinDivinationActivity extends AppCompatActivity {
         TextView nameView = new TextView(this);
         nameView.setText(lineName);
         nameView.setTextSize(14);
-        nameView.setTextColor(0xFF888888);
+        nameView.setTextColor(0xFF6A6560);
         
         LineView lineView = new LineView(this);
         lineView.setYang(isYang);
