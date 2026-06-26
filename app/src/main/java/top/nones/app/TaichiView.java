@@ -21,6 +21,7 @@ public class TaichiView extends View implements View.OnClickListener {
     private float rotationAngle = 0;
     private Handler handler;
     private boolean isAnimating = true;
+    private java.util.Random random = new java.util.Random();
     private static final long ANIMATION_DELAY = 16;
     private static final float ROTATION_SPEED = 0f;
 
@@ -96,7 +97,7 @@ public class TaichiView extends View implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        int hexagramNumber = (int) (Math.random() * 64);
+        int hexagramNumber = random.nextInt(64);
         HexagramDetailActivity.start(getContext(), hexagramNumber);
     }
 

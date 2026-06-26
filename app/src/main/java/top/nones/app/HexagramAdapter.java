@@ -47,6 +47,7 @@ public class HexagramAdapter extends RecyclerView.Adapter<HexagramAdapter.ViewHo
             String pinyin = hexagram.getString("pinyin");
             int index = hexagram.getInt("index");
 
+            holder.numberText.setText("#" + (index + 1));
             holder.nameText.setText(name);
             holder.pinyinText.setText(pinyin);
             holder.hexagramView.setGua(gua);
@@ -97,12 +98,14 @@ public class HexagramAdapter extends RecyclerView.Adapter<HexagramAdapter.ViewHo
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         final HexagramView hexagramView;
+        final TextView numberText;
         final TextView nameText;
         final TextView pinyinText;
 
         ViewHolder(View view) {
             super(view);
             hexagramView = view.findViewById(R.id.hexagramView);
+            numberText = view.findViewById(R.id.numberText);
             nameText = view.findViewById(R.id.nameText);
             pinyinText = view.findViewById(R.id.pinyinText);
         }

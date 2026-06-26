@@ -127,7 +127,7 @@ public class HexagramDetailActivity extends AppCompatActivity implements Hexagra
             
             updateButtonLabels(gua);
 
-            if (nameTextView != null) nameTextView.setText(name);
+            if (nameTextView != null) nameTextView.setText((hexagramNumber + 1) + ". " + name);
             if (guaTextView != null) guaTextView.setText(gua);
             if (pinyinTextView != null) pinyinTextView.setText(pinyin);
 

@@ -19,7 +19,7 @@ public class CoinDivinationActivity extends AppCompatActivity {
     private LinearLayout guideCard, selectionContainer, linesContainer, hexagramContainer, hexagramClickArea;
     private LinearLayout linesList;
     private HexagramView resultHexagram;
-    private TextView resultName, resultPinyin, resultGuaType, resultGuaNumber;
+    private TextView resultName;
     
     private int currentLineIndex = 0;
     private StringBuilder guaBuilder = new StringBuilder();
@@ -55,9 +55,6 @@ public class CoinDivinationActivity extends AppCompatActivity {
         linesList = findViewById(R.id.linesList);
         resultHexagram = findViewById(R.id.resultHexagram);
         resultName = findViewById(R.id.resultName);
-        resultPinyin = findViewById(R.id.resultPinyin);
-        resultGuaType = findViewById(R.id.resultGuaType);
-        resultGuaNumber = findViewById(R.id.resultGuaNumber);
         hexagramClickArea = findViewById(R.id.hexagramClickArea);
         
         btnStart.setOnClickListener(v -> startDivination());
@@ -185,12 +182,7 @@ public class CoinDivinationActivity extends AppCompatActivity {
                 String upperTrigram = getUpperTrigram(reversedGua);
                 String lowerTrigram = getLowerTrigram(reversedGua);
                 String guaType = upperTrigram + "上" + lowerTrigram + "下";
-                String guaNumber = "第" + (hexagramIndex + 1) + "卦";
-                
                 resultName.setText(name);
-                resultPinyin.setText(pinyin);
-                resultGuaType.setText(guaType);
-                resultGuaNumber.setText(guaNumber);
                 
                 hexagramContainer.setVisibility(View.VISIBLE);
                 btnRestart.setVisibility(View.VISIBLE);
