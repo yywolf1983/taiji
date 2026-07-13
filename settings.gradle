@@ -26,5 +26,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "MyApp"
 include ':app'
-include ':registration-lib'
-project(':registration-lib').projectDir = new File('../anddex/registration-lib')
