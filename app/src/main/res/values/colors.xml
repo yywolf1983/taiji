@@ -35,6 +35,7 @@
     <color name="textPrimary80">#CCE8E4D9</color>
     <color name="textPrimary60">#99E8E4D9</color>
     <color name="textSecondary80">#CC9B9689</color>
+    <color name="textChanged">#FFE4B5</color>
 
     <!-- ═══ 基础 ═══ -->
     <color name="white">#F5F0E8</color>

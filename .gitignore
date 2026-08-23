@@ -71,3 +71,6 @@ Thumbs.db
 
 # Gradle wrapper jar file
 !gradle/wrapper/gradle-wrapper.jar 
+
+.stignore
+.stfolder/

@@ -340,7 +340,7 @@ public class HexagramDetailActivity extends AppCompatActivity implements Hexagra
         
         if (currentGua.charAt(5 - position) != originalGua.charAt(5 - position)) {
             lineButtons[position].setBackgroundResource(R.drawable.btn_line_changed);
-            lineButtons[position].setTextColor(0xFF9B9689);
+            lineButtons[position].setTextColor(getResources().getColor(R.color.textChanged));
         } else {
             lineButtons[position].setBackgroundResource(R.drawable.btn_line_normal);
             lineButtons[position].setTextColor(getResources().getColor(R.color.textSecondary));
@@ -371,6 +371,7 @@ public class HexagramDetailActivity extends AppCompatActivity implements Hexagra
         
         if (currentGua.equals(originalGua)) {
             isChanged = false;
+            resetButtonColors();
             if (changeHint != null) {
                 changeHint.setText("点击按钮变爻");
             }
@@ -381,6 +382,9 @@ public class HexagramDetailActivity extends AppCompatActivity implements Hexagra
                 zhiguaContainer.setVisibility(View.GONE);
             }
         } else {
+            for (int i = 0; i < 6; i++) {
+                updateButtonColor(i);
+            }
             isChanged = true;
             
             int changedLineCount = 0;
