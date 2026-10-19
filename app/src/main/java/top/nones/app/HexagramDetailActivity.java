@@ -246,7 +246,10 @@ public class HexagramDetailActivity extends AppCompatActivity implements Hexagra
                         JSONObject line = lines.getJSONObject(i);
                         String lineTextStr = line.optString("text", "");
                         
-                        boolean isYang = lineTextStr.contains("九");
+                        // 检查爻辞前缀判断阴阳（避免正文中的"九""六"字误判）
+                        boolean isYang = lineTextStr.startsWith("初") ? lineTextStr.charAt(1) == '九'
+                                : lineTextStr.startsWith("上") ? lineTextStr.charAt(1) == '九'
+                                : lineTextStr.charAt(0) == '九';
                         
                         androidx.cardview.widget.CardView lineCard = new androidx.cardview.widget.CardView(this);
                         lineCard.setRadius(12f);
@@ -454,11 +457,6 @@ public class HexagramDetailActivity extends AppCompatActivity implements Hexagra
         }
         
         zhiguaContainer.setVisibility(View.GONE);
-    }
-
-    private String getLineName(int position) {
-        String[] names = {"初九", "九二", "九三", "九四", "九五", "上九"};
-        return names[position];
     }
 
     @Override

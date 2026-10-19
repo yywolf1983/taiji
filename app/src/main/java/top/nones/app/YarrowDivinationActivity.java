@@ -32,7 +32,7 @@ public class YarrowDivinationActivity extends AppCompatActivity {
     
     private String[] positions = {"初", "二", "三", "四", "五", "上"};
     
-    private String[] trigramNames = {"坤", "艮", "坎", "巽", "震", "离", "兑", "乾"};
+    private String[] trigramNames = {"坤", "震", "坎", "兑", "艮", "离", "巽", "乾"};
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
