@@ -129,7 +129,8 @@ public class YarrowDivinationActivity extends AppCompatActivity {
         } else if (currentStep == 1) {
             rightRemainder = remainder;
             
-            int removed = leftRemainder + rightRemainder + 1;
+            // 只有第一变需要"夹小指"那根（减1），第二、三变直接减左右余数
+            int removed = leftRemainder + rightRemainder + (currentChange == 1 ? 1 : 0);
             totalSticks -= removed;
             
             currentChange++;
@@ -138,7 +139,11 @@ public class YarrowDivinationActivity extends AppCompatActivity {
                 currentStep = 0;
                 
                 guideTitle.setText("第" + (currentLineIndex + 1) + "爻 · " + positions[currentLineIndex] + "爻");
-                guideText.setText("第" + currentChange + "变：\n\n1. 将剩余的" + totalSticks + "根蓍草混合\n2. 再次随机分成两堆\n3. 从右堆取1根夹在小指间\n4. 左堆每4根一数，记录余数");
+                if (currentChange == 2) {
+                    guideText.setText("第二变：\n\n1. 将剩余的" + totalSticks + "根蓍草混合\n2. 再次随机分成两堆\n3. 左堆每4根一数，记录余数\n4. 右堆每4根一数，记录余数");
+                } else {
+                    guideText.setText("第三变：\n\n1. 将剩余的" + totalSticks + "根蓍草混合\n2. 再次随机分成两堆\n3. 左堆每4根一数，记录余数\n4. 右堆每4根一数，记录余数");
+                }
                 
                 stepInfo.setText("第" + currentChange + "变\n请选择左堆余数");
                 

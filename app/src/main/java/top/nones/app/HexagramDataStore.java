@@ -1,6 +1,7 @@
 package top.nones.app;
 
 import android.content.Context;
+import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.InputStream;
@@ -54,6 +55,7 @@ public class HexagramDataStore {
                 hexagrams.add(hexagramsArray.getJSONObject(i));
             }
         } catch (Exception e) {
+            Log.e("HexagramDataStore", "加载卦象数据失败", e);
             hexagrams.clear();
             hexagramsArray = null;
         }

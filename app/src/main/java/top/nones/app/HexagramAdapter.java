@@ -1,5 +1,6 @@
 package top.nones.app;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,7 +76,7 @@ public class HexagramAdapter extends RecyclerView.Adapter<HexagramAdapter.ViewHo
                 }
             });
         } catch (Exception e) {
-            // 静默处理
+            Log.e("HexagramAdapter", "绑定数据失败", e);
         }
     }
 

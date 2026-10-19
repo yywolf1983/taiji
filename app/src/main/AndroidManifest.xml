@@ -20,9 +20,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HexagramListActivity"
-            android:exported="false" />
-        <activity
             android:name=".HexagramDetailActivity"
             android:exported="false" />
         <activity
