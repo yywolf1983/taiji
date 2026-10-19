@@ -61,8 +61,8 @@ public class CoinDivinationActivity extends AppCompatActivity {
         btnRestart.setOnClickListener(v -> resetDivination());
         
         btn3Yang.setOnClickListener(v -> selectResult(3, 9, "九(老阳)", true));
-        btn2Yang1Yin.setOnClickListener(v -> selectResult(2, 7, "七(少阳)", true));
-        btn1Yang2Yin.setOnClickListener(v -> selectResult(1, 8, "八(少阴)", false));
+        btn2Yang1Yin.setOnClickListener(v -> selectResult(2, 8, "八(少阴)", false));
+        btn1Yang2Yin.setOnClickListener(v -> selectResult(1, 7, "七(少阳)", true));
         btn3Yin.setOnClickListener(v -> selectResult(0, 6, "六(老阴)", false));
         
         hexagramClickArea.setOnClickListener(v -> navigateToHexagram());

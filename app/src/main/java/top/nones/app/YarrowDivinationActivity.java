@@ -15,7 +15,7 @@ import org.json.JSONObject;
 public class YarrowDivinationActivity extends AppCompatActivity {
     private TextView guideTitle, guideText, stepInfo;
     private Button btnStart, btnRestart;
-    private Button btnRemainder1, btnRemainder2, btnRemainder3, btnRemainder4;
+    private Button btnLaoYang, btnShaoYang, btnShaoYin, btnLaoYin;
     private LinearLayout guideCard, selectionContainer, linesContainer, hexagramContainer, hexagramClickArea;
     private LinearLayout linesList;
     private HexagramView resultHexagram;
@@ -24,15 +24,18 @@ public class YarrowDivinationActivity extends AppCompatActivity {
     private int currentLineIndex = 0;
     private StringBuilder guaBuilder = new StringBuilder();
     
-    private int currentChange = 0;
-    private int totalSticks = 49;
-    private int leftRemainder = 0;
-    private int rightRemainder = 0;
-    private int currentStep = 0;
-    
     private String[] positions = {"初", "二", "三", "四", "五", "上"};
     
+    /** 三枚铜钱/蓍草标准映射：0-7 坤, 1 震, 2 坎, 3 兑, 4 艮, 5 离, 6 巽, 7 乾 */
     private String[] trigramNames = {"坤", "震", "坎", "兑", "艮", "离", "巽", "乾"};
+    
+    /** 蓍草三变后四种结果：老阳9/少阳7 → 阳；少阴8/老阴6 → 阴 */
+    private static final int LAO_YANG = 9;
+    private static final int SHAO_YANG = 7;
+    private static final int SHAO_YIN = 8;
+    private static final int LAO_YIN = 6;
+    
+    private volatile boolean destroyed = false;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +56,11 @@ public class YarrowDivinationActivity extends AppCompatActivity {
         btnStart = findViewById(R.id.btnStart);
         btnRestart = findViewById(R.id.btnRestart);
         
-        btnRemainder1 = findViewById(R.id.btnRemainder1);
-        btnRemainder2 = findViewById(R.id.btnRemainder2);
-        btnRemainder3 = findViewById(R.id.btnRemainder3);
-        btnRemainder4 = findViewById(R.id.btnRemainder4);
+        // 四个按钮对应：老阳(9)、少阳(7)、少阴(8)、老阴(6)
+        btnLaoYang = findViewById(R.id.btnRemainder1);
+        btnShaoYang = findViewById(R.id.btnRemainder2);
+        btnShaoYin = findViewById(R.id.btnRemainder3);
+        btnLaoYin = findViewById(R.id.btnRemainder4);
         
         linesList = findViewById(R.id.linesList);
         resultHexagram = findViewById(R.id.resultHexagram);
@@ -66,10 +70,10 @@ public class YarrowDivinationActivity extends AppCompatActivity {
         btnStart.setOnClickListener(v -> startDivination());
         btnRestart.setOnClickListener(v -> resetDivination());
         
-        btnRemainder1.setOnClickListener(v -> selectRemainder(1));
-        btnRemainder2.setOnClickListener(v -> selectRemainder(2));
-        btnRemainder3.setOnClickListener(v -> selectRemainder(3));
-        btnRemainder4.setOnClickListener(v -> selectRemainder(4));
+        btnLaoYang.setOnClickListener(v -> selectLineValue(LAO_YANG, "九(老阳)", true));
+        btnShaoYang.setOnClickListener(v -> selectLineValue(SHAO_YANG, "七(少阳)", true));
+        btnShaoYin.setOnClickListener(v -> selectLineValue(SHAO_YIN, "八(少阴)", false));
+        btnLaoYin.setOnClickListener(v -> selectLineValue(LAO_YIN, "六(老阴)", false));
         
         hexagramClickArea.setOnClickListener(v -> navigateToHexagram());
     }
@@ -91,70 +95,6 @@ public class YarrowDivinationActivity extends AppCompatActivity {
         }
     }
     
-    private void startDivination() {
-        currentLineIndex = 0;
-        guaBuilder.setLength(0);
-        linesList.removeAllViews();
-        
-        btnStart.setVisibility(View.GONE);
-        btnRestart.setVisibility(View.GONE);
-        hexagramContainer.setVisibility(View.GONE);
-        
-        startLine1();
-    }
-    
-    private void startLine1() {
-        totalSticks = 49;
-        currentChange = 1;
-        
-        guideTitle.setText("第1爻 · 初爻");
-        guideText.setText("第一变：\n\n1. 取49根蓍草，随机分成两堆\n2. 从右堆取1根夹在小指间\n3. 左堆每4根一数，记录余数");
-        
-        guideCard.setVisibility(View.VISIBLE);
-        selectionContainer.setVisibility(View.VISIBLE);
-        
-        stepInfo.setText("第" + (currentLineIndex + 1) + "爻 · 第" + currentChange + "变\n请选择左堆余数");
-    }
-    
-    private void selectRemainder(int remainder) {
-        if (currentStep == 0) {
-            leftRemainder = remainder;
-            
-            guideTitle.setText("第" + (currentLineIndex + 1) + "爻 · 初爻");
-            guideText.setText("第一变：\n\n4. 右堆每4根一数，记录余数");
-            
-            stepInfo.setText("请选择右堆余数");
-            currentStep = 1;
-            
-        } else if (currentStep == 1) {
-            rightRemainder = remainder;
-            
-            // 只有第一变需要"夹小指"那根（减1），第二、三变直接减左右余数
-            int removed = leftRemainder + rightRemainder + (currentChange == 1 ? 1 : 0);
-            totalSticks -= removed;
-            
-            currentChange++;
-            
-            if (currentChange <= 3) {
-                currentStep = 0;
-                
-                guideTitle.setText("第" + (currentLineIndex + 1) + "爻 · " + positions[currentLineIndex] + "爻");
-                if (currentChange == 2) {
-                    guideText.setText("第二变：\n\n1. 将剩余的" + totalSticks + "根蓍草混合\n2. 再次随机分成两堆\n3. 左堆每4根一数，记录余数\n4. 右堆每4根一数，记录余数");
-                } else {
-                    guideText.setText("第三变：\n\n1. 将剩余的" + totalSticks + "根蓍草混合\n2. 再次随机分成两堆\n3. 左堆每4根一数，记录余数\n4. 右堆每4根一数，记录余数");
-                }
-                
-                stepInfo.setText("第" + currentChange + "变\n请选择左堆余数");
-                
-            } else {
-                showLineResult();
-            }
-        }
-    }
-
-    private volatile boolean destroyed = false;
-
     @Override
     protected void onDestroy() {
         destroyed = true;
@@ -165,61 +105,72 @@ public class YarrowDivinationActivity extends AppCompatActivity {
             resultHexagram.setGua("");
         }
     }
-
-    private void showLineResult() {
-        currentStep = 0;
+    
+    private void startDivination() {
+        currentLineIndex = 0;
+        guaBuilder.setLength(0);
+        linesList.removeAllViews();
         
-        int lineValue = totalSticks / 4;
+        btnStart.setVisibility(View.GONE);
+        btnRestart.setVisibility(View.GONE);
+        hexagramContainer.setVisibility(View.GONE);
         
-        boolean isYang = (lineValue == 7 || lineValue == 9);
+        updateGuide();
+    }
+    
+    private void updateGuide() {
+        int lineNum = currentLineIndex + 1;
+        String posName = positions[currentLineIndex];
+        
+        guideTitle.setText("第" + lineNum + "爻 · " + posName + "爻");
+        guideText.setText("蓍草三变之后，余数除以4的结果只有四种可能：\n\n" +
+                "老阳(九/9)：三爻皆阳，动爻\n" +
+                "少阳(七/7)：两阴一阳，静爻\n" +
+                "少阴(八/8)：两阳一阴，静爻\n" +
+                "老阴(六/6)：三爻皆阴，动爻\n\n" +
+                "请选择本次蓍草占卜所得的结果。");
+        
+        guideCard.setVisibility(View.VISIBLE);
+        selectionContainer.setVisibility(View.VISIBLE);
+        
+        stepInfo.setText("请选择第" + lineNum + "爻结果");
+    }
+    
+    private void selectLineValue(int value, String resultText, boolean isYang) {
         String lineChar = isYang ? "1" : "0";
         guaBuilder.append(lineChar);
         
         String yangYin = isYang ? "九" : "六";
         String positionName = positions[currentLineIndex];
         
-        addLineToDisplay(yangYin + positionName, isYang);
+        addLineToDisplay(yangYin + positionName + " · " + resultText, isYang);
         
         currentLineIndex++;
         
         if (currentLineIndex < 6) {
-            handlerTransition(() -> {
-                totalSticks = 49;
-                currentChange = 1;
-                
-                guideTitle.setText("第" + (currentLineIndex + 1) + "爻 · " + positions[currentLineIndex] + "爻");
-                guideText.setText("第一变：\n\n1. 取49根蓍草，随机分成两堆\n2. 从右堆取1根夹在小指间\n3. 左堆每4根一数，记录余数");
-                
-                stepInfo.setText("第" + (currentLineIndex + 1) + "爻 · 第" + currentChange + "变\n请选择左堆余数");
-            });
-            
+            startNextLine();
         } else {
-            guideCard.setVisibility(View.GONE);
-            selectionContainer.setVisibility(View.GONE);
-            
             showResult();
         }
     }
     
-    private void handlerTransition(Runnable onComplete) {
+    private void startNextLine() {
         Animation fadeOut = AnimationUtils.loadAnimation(this, android.R.anim.fade_out);
         
         fadeOut.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {}
+            @Override public void onAnimationStart(Animation animation) {}
+            @Override public void onAnimationRepeat(Animation animation) {}
             
             @Override
             public void onAnimationEnd(Animation animation) {
                 if (destroyed || isFinishing() || isDestroyed()) return;
-                onComplete.run();
+                
+                updateGuide();
                 
                 Animation fadeIn = AnimationUtils.loadAnimation(YarrowDivinationActivity.this, R.anim.fade_in);
                 guideCard.startAnimation(fadeIn);
                 selectionContainer.startAnimation(fadeIn);
             }
-            
-            @Override
-            public void onAnimationRepeat(Animation animation) {}
         });
         
         guideCard.startAnimation(fadeOut);
@@ -227,6 +178,9 @@ public class YarrowDivinationActivity extends AppCompatActivity {
     }
     
     private void showResult() {
+        guideCard.setVisibility(View.GONE);
+        selectionContainer.setVisibility(View.GONE);
+        
         String reversedGua = getReversedGua();
         
         int hexagramIndex = HexagramUtils.findHexagramIndexByGua(reversedGua);
@@ -239,15 +193,12 @@ public class YarrowDivinationActivity extends AppCompatActivity {
                 
                 String upperTrigram = getUpperTrigram(reversedGua);
                 String lowerTrigram = getLowerTrigram(reversedGua);
-                String guaType = upperTrigram + "上" + lowerTrigram + "下";
                 resultName.setText(name);
                 
                 hexagramContainer.setVisibility(View.VISIBLE);
                 btnRestart.setVisibility(View.VISIBLE);
                 
-                hexagramContainer.post(() -> {
-                    resultHexagram.setGua(reversedGua);
-                });
+                hexagramContainer.post(() -> resultHexagram.setGua(reversedGua));
                 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -257,31 +208,20 @@ public class YarrowDivinationActivity extends AppCompatActivity {
     
     private String getUpperTrigram(String gua) {
         if (gua.length() != 6) return "";
-        String upperGua = gua.substring(0, 3);
-        int upperIndex = Integer.parseInt(upperGua, 2);
-        if (upperIndex >= 0 && upperIndex < trigramNames.length) {
-            return trigramNames[upperIndex];
-        }
-        return "";
+        int idx = Integer.parseInt(gua.substring(0, 3), 2);
+        return trigramNames[idx];
     }
     
     private String getLowerTrigram(String gua) {
         if (gua.length() != 6) return "";
-        String lowerGua = gua.substring(3, 6);
-        int lowerIndex = Integer.parseInt(lowerGua, 2);
-        if (lowerIndex >= 0 && lowerIndex < trigramNames.length) {
-            return trigramNames[lowerIndex];
-        }
-        return "";
+        int idx = Integer.parseInt(gua.substring(3, 6), 2);
+        return trigramNames[idx];
     }
     
     private void resetDivination() {
         currentLineIndex = 0;
         guaBuilder.setLength(0);
         linesList.removeAllViews();
-        totalSticks = 49;
-        currentChange = 0;
-        currentStep = 0;
         
         btnStart.setVisibility(View.VISIBLE);
         btnRestart.setVisibility(View.GONE);
@@ -308,7 +248,7 @@ public class YarrowDivinationActivity extends AppCompatActivity {
         lineView.setYang(isYang);
         
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-            150,
+            LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
         );
         lp.setMargins(20, 0, 0, 0);
